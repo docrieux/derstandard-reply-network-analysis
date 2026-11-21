@@ -24,7 +24,7 @@ Medimos si las respuestas cruzan facciones. Como las facciones no se construyero
 ### Población: usuarios estables
 Limpiamos la base de datos de respuestas con metadatos inconsistentes y los usuarios borrados y las respuestas a uno mismo (44.35M). Pregunta abierta: ¿los usuarios borrados eran más conflictivos que el resto? Si lo eran, excluirlos hace que el foro parezca más tranquilo de lo que fue. *(Reformulada el 2026-11-21.)*
 
-14817 usuarios (6%) con etiqueta de FAULTANA. Se tendría que considerar si es un grupo suficientemente representativo de la conversación en DerStandard.
+14817 usuarios (6%) con etiqueta de FAULTANA. Participan, respondiendo o recibiendo respuesta, en 33.042.310 de las 44.350.672 respuestas limpias (74,5 %; `BASE-VERIFICADA.md`, H12). *(Dato añadido el 2026-11-21.)* Se tendría que considerar si es un grupo suficientemente representativo de la conversación en DerStandard.
 
 ### Votos negativos al responder
 ¿Quien responde a un comentario tiende a votarlo en contra, más que cuando esa misma persona vota un comentario parecido sin responderlo? La unidad a usar es el voto, que está clasificado segun si la persona respondió o no a ese comentario.
