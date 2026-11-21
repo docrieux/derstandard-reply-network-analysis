@@ -35,6 +35,7 @@ Si no digo nada, el modo es **Ejecutor**. Un modo se activa al nombrarlo y dura 
 - `code/dataset-prep/`: preparación de datos (TSV → Parquet, respuestas A→B).
 - `code/dataset-checks/`: comprobaciones del dataset.
 - `code/experiments/NN-nombre/` y `notes/experiments/NN-nombre/`: experimentos nuevos (plantilla en `notes/experiments/_template/`).
-- `code/_obsoleto/`: código del diseño antiguo. No se usa para resultados nuevos.
+- `notes/dataset/prep-results/`: salidas de `dataset-prep` (`run.log`, embudo de respuestas).
+- El diseño antiguo (código, resultados, PLAN) solo está en git: commit `e65ba4c`.
 - Decisiones de limpieza de datos: `notes/dataset/data-treatment.md`.
 - Datos crudos y derivados: `data/derstandard/` (fuera de git).

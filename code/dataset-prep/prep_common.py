@@ -1,8 +1,9 @@
 """Shared paths and helpers for the dataset preparation scripts.
 
 Taken from code/_obsoleto/01-reply-opposition-lifetime/common.py on 2026-11-21, keeping only what
-00_to_parquet.py and 01_reply_edges.py use. Outputs of a new run go to notes/dataset/prep-results/;
-the outputs of the 2026-10-06 run stay in notes/experiments/01-reply-opposition-lifetime/results/.
+00_to_parquet.py and 01_reply_edges.py use. Outputs go to notes/dataset/prep-results/. The run.log and
+01_reply_funnel.csv there come from the 2026-10-06 run (moved on 2026-11-21); that run.log also logs the
+steps of the old design, whose code is only in git (commit e65ba4c).
 """
 import time
 from pathlib import Path

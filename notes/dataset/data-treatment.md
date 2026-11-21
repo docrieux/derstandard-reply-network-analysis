@@ -6,7 +6,7 @@ Decisiones de limpieza y definiciones comunes a los experimentos. Cada decisión
 Dos tablas, porque la base cambia: primero los comentarios (donde se quitan los duplicados) y después las respuestas (donde se aplican las exclusiones).
 
 ### Comentarios
-Fuente: `notes/experiments/01-reply-opposition-lifetime/results/run.log` y NOTES.md, decisión 1.
+Fuente: `notes/dataset/prep-results/run.log` y `code/dataset-checks/check_duplicate_comments.py`.
 
 | Paso | N | % de filas crudas |
 |---|---|---|
@@ -15,7 +15,7 @@ Fuente: `notes/experiments/01-reply-opposition-lifetime/results/run.log` y NOTES
 | **Comentarios únicos** | **75.385.329** | **99,657** |
 
 ### Respuestas
-Fuente: `notes/experiments/01-reply-opposition-lifetime/results/01_reply_funnel.csv` (última ejecución, `run.log`).
+Fuente: `notes/dataset/prep-results/01_reply_funnel.csv` (última ejecución, `run.log`).
 
 | Paso | N | % de respuestas |
 |---|---|---|

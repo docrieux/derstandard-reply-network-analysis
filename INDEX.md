@@ -11,15 +11,13 @@ tfg/
 │   ├── pyproject.toml            entorno uv compartido
 │   ├── dataset-prep/             TSV → Parquet (00) y respuestas A→B con su embudo (01)
 │   ├── dataset-checks/           comprobaciones del dataset (duplicados, autovotos)
-│   ├── experiments/              experimentos activos (vacío de momento)
-│   └── _obsoleto/                código del diseño antiguo, guardado como registro
-│       └── 01-reply-opposition-lifetime/   scripts 02…09 (+ common.py, h4.py, plotstyle.py)
+│   └── experiments/              código de cada experimento (vacío de momento)
 └── notes/                        vault de Obsidian
-    ├── dataset/                  qué es el dataset: README, Codebook, descarga, tratamiento
+    ├── dataset/                  qué es el dataset: README, Codebook, descarga, tratamiento; prep-results/ (run.log y embudo)
     ├── method/                   diario (WORKLOG.md) y base verificada (BASE-VERIFICADA.md); las reglas de uso de IA están en /CLAUDE.md
     ├── experiments/
     │   ├── _template/            copiar para empezar un experimento nuevo
-    │   └── 01-reply-opposition-lifetime/   README, PLAN y NOTES (diseño antiguo), results/
+    │   └── 01-who-replies-to-whom/   README, PLAN y NOTES (planteamiento del 2026-11-19)
     ├── meetings/                 una nota por reunión
     ├── papers/                   PDFs de las lecturas
     └── templates/                plantillas de Obsidian
@@ -34,4 +32,4 @@ tfg/
 ## Experimentos
 | # | Nombre | Estado |
 |---|---|---|
-| 01 | [Respuestas, oposición y lifetime](notes/experiments/01-reply-opposition-lifetime/README.md) | diseño antiguo; código en `code/_obsoleto/` (2026-11-21). Planteamiento nuevo del 2026-11-19 en WORKLOG |
+| 01 | [Quién responde a quién entre facciones](notes/experiments/01-who-replies-to-whom/README.md) | idea (planteamiento del 2026-11-19). El diseño antiguo solo está en git (commit `e65ba4c`) |

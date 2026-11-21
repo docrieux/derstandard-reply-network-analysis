@@ -16,11 +16,14 @@ One entry per working day: what was done, by whom ([me] / [AI]), what changed on
 5. [AI] Comparé la versión de *Sci Data* del artículo del dataset con la de arXiv: sin diferencias de contenido. Borré la de *Sci Data*; se cita la de arXiv.
 6. [AI] Git: `.gitignore` deja de ignorar los `.log` (son fuente). Commits `4106db3` (estado antes del barrido) y `09f5f80` (preparación de datos).
 7. [AI] Eliminado el libro-guía y barrido de todo el proyecto (detalle en `BASE-VERIFICADA.md`, §8).
+8. [me] Notas de la reunión del 2026-11-09 rellenadas de memoria (la IA las pasó a limpio).
+9. [AI] `AI-USE.md` sustituido por `CLAUDE.md` en la raíz, con los modos de trabajo de la IA (decididos por mí).
+10. [AI, a petición mía] Revisión de NOTES y PLAN del experimento 01; después, reorganización: el experimento pasa al planteamiento del 2026-11-19 (README, PLAN y NOTES con mi texto); el diseño antiguo (código, resultados, PLAN, NOTES y sus tablas derivadas) se elimina y solo queda en git (`e65ba4c`); `run.log` y el embudo pasan a `notes/dataset/prep-results/`.
 
+11. [me] Quito el odds ratio del diseño: la frase que lo justificaba no tiene respaldo en ningún paper guardado (verificado por la IA, `BASE-VERIFICADA.md`, L1). Me quedo con el RR de Mantel–Haenszel y las proporciones simples. La carpeta del experimento pasa a llamarse `01-who-replies-to-whom`.
 **Cambios en disco:** los de arriba. Ningún análisis nuevo; solo se repitieron los dos chequeos del dataset.
 
 **Pendiente**
-- Rellenar las notas de la reunión del 2026-11-09.
 - Tareas de `BASE-VERIFICADA.md`, §6.
 - Escribir el resumen para Andreas y Emma a partir de `BASE-VERIFICADA.md`.
 
@@ -28,7 +31,7 @@ One entry per working day: what was done, by whom ([me] / [AI]), what changed on
 
 ## 2026-11-19
 
-**Decisión del día [me]:** volver al inicio del proyecto y rehacer el planteamiento yo mismo. La IA pasa a ser ejecutora: no propone ideas ni diseños; explica conceptos cuando se lo pido, cuestiona mis respuestas y ejecuta lo que yo decido (siguiendo lo acordado con Andreas el 2026-11-09: "que la IA no te dé las ideas, que solo las ejecute").
+**Decisión del día [me]:** volver al inicio del proyecto y rehacer el planteamiento yo mismo. La IA pasa a ser ejecutora: no propone ideas ni diseños; explica conceptos cuando se lo pido, cuestiona mis respuestas y ejecuta lo que yo decido (siguiendo lo acordado con Andreas el 2026-11-09: "que la IA no te dé las ideas, que solo las ejecute"; paráfrasis, no cita literal, ver `notes/meetings/2026-11-09.md`).
 
 **Hecho**
 1. [me] Rediseño del experimento desde cero respondiendo preguntas (pregunta, medida, comparación, refutación), sin mirar `PLAN.md`, y comparación posterior con el diseño de la IA. Resultado: el resumen de abajo, escrito por mí.

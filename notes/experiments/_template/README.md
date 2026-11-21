@@ -9,5 +9,5 @@
 ## Datos que usa
 (tablas de `notes/dataset/`, y el tratamiento aplicado: enlace a [[data-treatment]])
 ## Uso de IA en este experimento
-| Fecha | Qué hizo la IA | Nivel (L0–L3) | Qué decidí yo | Qué aprendí |
+| Fecha | Qué hizo la IA | Modo (`CLAUDE.md`) | Qué decidí yo | Qué aprendí |
 |---|---|---|---|---|
