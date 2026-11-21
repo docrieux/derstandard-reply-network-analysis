@@ -22,10 +22,10 @@ Creado el 2026-11-21. Lo mantiene la IA a petición mía; el contenido lo decido
 | 2026-10-16 | Comprobaciones de duplicados y autovotos (el test de autovotos lo diseño yo). | `notes/dataset/data-treatment.md` |
 | 2026-10-19 | Reunión 2. Andreas aprueba método y resultados. Pide: votos positivos, top 10 % por lifetime, entender los métodos, leer sobre redes con signo. | `notes/meetings/2026-10-19.md` |
 | 2026-11-02 | La IA ejecuta los scripts 08 (votos positivos) y 09 (top 10 %). No revisados por mí. | `notes/experiments/01-…/NOTES.md`, decisión 11 |
-| 2026-11-03 | La IA escribe el libro-guía y los resúmenes de papers. Decido no ejecutar nada nuevo hasta entender lo hecho. | `notes/method/WORKLOG.md` |
+| 2026-11-03 | La IA escribe el libro-guía y los resúmenes de papers (ambos eliminados el 2026-11-21). Decido no ejecutar nada nuevo hasta entender lo hecho. | `notes/method/WORKLOG.md` |
 | 2026-11-09 | Reunión 3. Le digo a Andreas que no siento el TFG mío. Acuerdo: «que la IA no te dé las ideas, que solo las ejecute». | Preparación en `notes/meetings/2026-11-09.md` (las notas de la reunión están **vacías**); el acuerdo solo consta en `WORKLOG.md`, entrada 2026-11-19 |
 | 2026-11-19 | Rehago yo el planteamiento desde cero. Corrijo varias cosas que se daban por ciertas. | `WORKLOG.md`, 2026-11-19 |
-| 2026-11-21 | Repaso del proyecto. Archivo el código antiguo en `code/_obsoleto/`. Corrijo los textos que chocaban con el planteamiento nuevo. Adopto la regla de verificación. | Este archivo; `code/_obsoleto/README.md` |
+| 2026-11-21 | Repaso del proyecto. Archivo el código antiguo en `code/_obsoleto/`; saco la preparación de datos (`code/dataset-prep/`) y los chequeos (`code/dataset-checks/`, repetidos con el mismo resultado). Adopto la regla de verificación. Primer commit de git (`4106db3`). Elimino el libro-guía y hago un barrido de todo lo que no tiene fuente. | Este archivo; `code/_obsoleto/README.md`; `git log` |
 
 ---
 
@@ -86,7 +86,7 @@ El planteamiento inicial es el `PLAN.md` del 2026-10-06, escrito por la IA. Los 
 | P1 | El PLAN se escribió, aprobó y ejecutó el mismo día (ver cronología), antes de que yo entendiera el problema. | (Contexto de la narrativa.) |
 | P2 | La pregunta pedía «posiciones opuestas» y el PLAN la sustituyó por «desaprobación medida con votos» sin discutirlo. | **Limitación para el resumen.** Discutirlo con Andreas y Emma. |
 | P3 | H3b (hostilidad entre facciones) es circular: las facciones se construyen con votos y son negativas entre ellas (F1, F2). | **Eliminada.** |
-| P4 | H3 se interpretó en una sola dirección. La conclusión depende de la referencia elegida, y esa elección nunca se justificó. | **Marcar en el resumen.** Sigue como pregunta abierta. |
+| P4 | H3 se interpretó en una sola dirección: 0,260 observado frente a 0,232 del nulo y 0,468 de la mezcla aleatoria (`results/05_h3_factions.csv`). La conclusión depende de la referencia elegida, y esa elección nunca se justificó. | **Marcar en el resumen.** Sigue como pregunta abierta. |
 | P5 | H2 afirma usar parámetros «como en FAULTANA», pero usa ≥ 5 votos. FAULTANA exige Var[p] < 10⁻⁴ (F2). | **Repetirlo con los parámetros correctos** (F2, F3). |
 | P6 | La comprobación de facciones del PLAN («la red debe reproducir el patrón de FAULTANA») se cumple por construcción. | **Error de base.** No puede repetirse. |
 | P7 | H1 compara a quien responde con *otros* votantes del mismo comentario, así que el efecto se mezcla con la tendencia general de cada votante. | **No olvidarlo en el resumen.** El diseño nuevo compara a cada votante consigo mismo. |
@@ -126,3 +126,11 @@ Regla: toda conclusión o dato sin fuente (literatura citada o resultado de cód
 | «FAULTANA **nunca** usa respuestas» (WORKLOG 19/11) | Lo verificado es F1: las interacciones son votos. El «nunca» no tiene cita. | 2026-11-21 |
 | «≈ 900–2.500 interacciones por pareja» (WORKLOG 19/11) | Sustituido por la cifra derivada de F2 y F3 (sección 2). | 2026-11-21 |
 | Explicación del año 2023 por zona horaria | Era una conjetura. Queda solo el hecho (H8, sección 3). | 2026-11-21 |
+| Dos controles del test de autovotos (77,2 % de votantes que también son autores; muestra de 5M votos) y la explicación «la plataforma no permite autovotos» | Consultas no guardadas; la explicación era una conjetura. | 2026-11-21 |
+
+### Barrido del 2026-11-21 [me decidí el criterio; la IA lo ejecutó]
+Todo lo eliminado se puede recuperar en el commit `4106db3`.
+- **Eliminados enteros:** el libro-guía y las dos guías anteriores (`notes/guide/`); `RESULTS.md`, `EXPLICACION.md`, `EXPLICACION-RESUMEN.md`, `PREGUNTAS.md` y `CODE-REVIEW.md` del experimento 01 (interpretaciones del diseño antiguo); los resúmenes de `PAPERS-SUMMARY.md` (sin cita precisa), que queda como lista de PDF.
+- **Resultados del diseño antiguo:** se conservan solo los CSV, figuras y `run.log`, con un índice en `results/README.md` que indica el script de cada archivo y las cifras principales leídas de los CSV.
+- **Reescritos:** `NOTES.md` del experimento 01 (solo decisiones con fuente); `PLAN.md` (aviso de diseño antiguo, texto sin tocar como registro); `AI-USE.md` (recortado y después **eliminado**: su método pasa a `/CLAUDE.md`, con los modos de trabajo de la IA); `dataset/NOTES.md` (fuera las razones sin fuente); `data-treatment.md` (fuera los controles sin consulta guardada); WORKLOG (fuera los hallazgos sin cita del 2026-11-03 y una frase del 2026-11-19).
+- **No tocados:** `dataset/README.md` y `Codebook.md` (documentación oficial de los autores) y las notas de reunión (registro de lo que pasó).

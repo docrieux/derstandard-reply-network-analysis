@@ -71,13 +71,10 @@ Eliminamos los comentarios duplicados porqué son duplicados exactos (coinciden 
 
 Ninguno de los 54.044.269 comentarios votados tiene un voto de su propio autor.
 
-**Controles (el cero no es un fallo del test).** Sobre `votes_clean`:
-- `author_id` no es nulo en 355.359.586 de 383.858.436 votos (92,6 %), así que el test sí podía detectar autovotos.
-- 154.260 de los 199.871 votantes (77,2 %) también aparecen como autores: los IDs de votante y de autor comparten espacio y son comparables.
-- En una muestra de 5M votos, el `author_id` del voto coincide con el autor del comentario en `comments.parquet` en todos los casos comparables (4.273.166 coinciden, 0 difieren).
+**Control (el cero no es un fallo del test).** Sobre `votes_clean` (los otros dos controles que había se eliminaron el 2026-11-21 porque su consulta no se guardó):
+- `author_id` no es nulo en 355.359.586 de 383.858.436 votos (92,6 %; `run.log`, comprobación de `votes_clean`), así que el test sí podía detectar autovotos.
 
 **Conclusión.**
 - No hay autovotos en el dataset, en ninguno de los dos signos. No hay nada que excluir y el análisis de votos al responder no sufre este sesgo.
-- La explicación más probable es que la plataforma no permite votar el propio comentario. Los datos no lo prueban.
 - Limitación: el 7,4 % de los votos tiene `author_id` nulo. Un autovoto de un usuario borrado sería indetectable (votante y autor `NULL`; además `00_to_parquet.py` elimina los votantes `NULL`).
 - Decisión: no se añade ningún filtro. Si en el futuro se actualiza el dataset, repetir `check_self_votes.py`.

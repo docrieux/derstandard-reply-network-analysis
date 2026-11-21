@@ -5,6 +5,7 @@ Un experimento = una carpeta con el mismo nombre en `notes/experiments/` (docume
 ```
 tfg/
 ├── INDEX.md                      este mapa
+├── CLAUDE.md                     reglas de uso de la IA (modos)
 ├── data/derstandard/             dataset crudo y derived/ (~42 GB, fuera de git)
 ├── code/
 │   ├── pyproject.toml            entorno uv compartido
@@ -12,13 +13,13 @@ tfg/
 │   ├── dataset-checks/           comprobaciones del dataset (duplicados, autovotos)
 │   ├── experiments/              experimentos activos (vacío de momento)
 │   └── _obsoleto/                código del diseño antiguo, guardado como registro
-│       └── 01-reply-opposition-lifetime/   scripts 00…09 (+ common.py, plotstyle.py)
+│       └── 01-reply-opposition-lifetime/   scripts 02…09 (+ common.py, h4.py, plotstyle.py)
 └── notes/                        vault de Obsidian
     ├── dataset/                  qué es el dataset: README, Codebook, descarga, tratamiento
-    ├── method/                   cómo trabajo: uso de IA (AI-USE.md), diario de trabajo (WORKLOG.md)
+    ├── method/                   diario (WORKLOG.md) y base verificada (BASE-VERIFICADA.md); las reglas de uso de IA están en /CLAUDE.md
     ├── experiments/
     │   ├── _template/            copiar para empezar un experimento nuevo
-    │   └── 01-reply-opposition-lifetime/   README, PLAN, NOTES, RESULTS, results/
+    │   └── 01-reply-opposition-lifetime/   README, PLAN y NOTES (diseño antiguo), results/
     ├── meetings/                 una nota por reunión
     ├── papers/                   PDFs de las lecturas
     └── templates/                plantillas de Obsidian

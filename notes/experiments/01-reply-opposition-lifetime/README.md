@@ -1,8 +1,8 @@
 # 01. Respuestas, oposición y lifetime de usuarios
 
-**Estado:** en revisión (la ejecución del 2026-10-06 se hizo con IA; ahora la estoy entendiendo y adoptando, ver [[AI-USE]])
+**Estado:** en revisión (la ejecución del 2026-10-06 se hizo con IA; ahora la estoy entendiendo y adoptando, ver `CLAUDE.md`)
 **Código:** `code/_obsoleto/01-reply-opposition-lifetime/` (scripts 00…09). **Obsoleto desde el 2026-11-21:** implementa el diseño antiguo; el planteamiento actual es el del 2026-11-19 (ver WORKLOG).
-**Documentos:** [[PLAN]] · [[NOTES]] · [[RESULTS]] · [[EXPLICACION]] (guía para entender y explicar) · [[PREGUNTAS]] (preguntas y respuestas de ensayo)
+**Documentos:** [[PLAN]] (diseño antiguo) · [[NOTES]] · `results/README.md` (salidas del diseño antiguo). `RESULTS`, `EXPLICACION`, `EXPLICACION-RESUMEN`, `PREGUNTAS` y `CODE-REVIEW` se eliminaron en el barrido del 2026-11-21 (recuperables en el commit `4106db3`).
 
 ## Pregunta
 ¿Quién responde a quién, están en posiciones opuestas, y cómo se relaciona con el tiempo de vida de los usuarios en el foro? (tarea de la reunión [[2026-09-30]])

@@ -1,3 +1,5 @@
+> **Diseño antiguo (2026-10-06), escrito por la IA. Se conserva como registro del planteamiento inicial.** Sus afirmaciones no están verificadas; sus problemas y las decisiones sobre cada uno están en `notes/method/BASE-VERIFICADA.md`, §4. El planteamiento actual es el del 2026-11-19 (`WORKLOG.md`).
+
 # Plan — Testing "who replies to whom & opposed positions" + "user lifetime" (DerStandard)
 
 ## Context

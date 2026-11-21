@@ -4,6 +4,28 @@ One entry per working day: what was done, by whom ([me] / [AI]), what changed on
 
 ---
 
+## 2026-11-21
+
+**Decisión del día [me]:** todo lo que se use como base del trabajo tiene que estar verificado. Las afirmaciones de la literatura llevan cita precisa (archivo, página, sección, tabla o figura) y las cifras de datos, su script guardado. Lo que no se puede verificar se elimina. Sobre esa base escribiré el resumen para Andreas y Emma.
+
+**Hecho**
+1. [me] Ejercicio de Mantel–Haenszel (RR y OR, proporciones, tabla sumada).
+2. [AI, a petición mía] Repaso de `notes/dataset/` y de README y PLAN del experimento 01: lista de 11 problemas del planteamiento inicial; yo decido qué hacer con cada uno (`BASE-VERIFICADA.md`, §4).
+3. [AI] Comprobación de las afirmaciones sobre FAULTANA y el artículo del dataset en los PDF, con página (`BASE-VERIFICADA.md`, §2). El criterio de usuarios estables del PLAN era correcto; el «≈ 900–2.500 interacciones» no lo era.
+4. [AI] Código: el diseño antiguo a `code/_obsoleto/`; `00_to_parquet.py` y `01_reply_edges.py` a `code/dataset-prep/`; los chequeos de duplicados y autovotos se repiten (mismo resultado) y pasan a `code/dataset-checks/`. Verificados los IDs hexadecimales y `First_Comment = 0` (H10, H11).
+5. [AI] Comparé la versión de *Sci Data* del artículo del dataset con la de arXiv: sin diferencias de contenido. Borré la de *Sci Data*; se cita la de arXiv.
+6. [AI] Git: `.gitignore` deja de ignorar los `.log` (son fuente). Commits `4106db3` (estado antes del barrido) y `09f5f80` (preparación de datos).
+7. [AI] Eliminado el libro-guía y barrido de todo el proyecto (detalle en `BASE-VERIFICADA.md`, §8).
+
+**Cambios en disco:** los de arriba. Ningún análisis nuevo; solo se repitieron los dos chequeos del dataset.
+
+**Pendiente**
+- Rellenar las notas de la reunión del 2026-11-09.
+- Tareas de `BASE-VERIFICADA.md`, §6.
+- Escribir el resumen para Andreas y Emma a partir de `BASE-VERIFICADA.md`.
+
+---
+
 ## 2026-11-19
 
 **Decisión del día [me]:** volver al inicio del proyecto y rehacer el planteamiento yo mismo. La IA pasa a ser ejecutora: no propone ideas ni diseños; explica conceptos cuando se lo pido, cuestiona mis respuestas y ejecuta lo que yo decido (siguiendo lo acordado con Andreas el 2026-11-09: "que la IA no te dé las ideas, que solo las ejecute").
@@ -15,7 +37,7 @@ One entry per working day: what was done, by whom ([me] / [AI]), what changed on
 
 **Correcciones a cosas que dábamos por ciertas**
 - Mis recuerdos de H3 no coincidían con los datos: las respuestas entre facciones son el 26,0 % (null del mismo artículo: 23,2 %; mezcla aleatoria: 46,8 %). No son "mayoritariamente entre facciones opuestas". La conclusión cambia de signo según la comparación.
-- FAULTANA **sí** compara con un nulo de signos barajados (partición fija, 1.000 réplicas; SAI_G = 0,396 [0,3951, 0,3961], Tabla S3 del SI). Lo que no hace es reoptimizar la partición en la red barajada (Leskovec) ni un nulo que preserve grado. Corrige la entrada del 2026-11-03.
+- FAULTANA **sí** compara con un nulo de signos barajados (partición fija, 1.000 réplicas; SAI_G = 0,396 [0,3951, 0,3961], Tabla S3 del SI). *[Frase eliminada el 2026-11-21: sin cita. Lo verificado es que el nulo mantiene la estructura de la red y la partición; `BASE-VERIFICADA.md`, F5.]* Corrige la entrada del 2026-11-03.
 - FAULTANA construye sus relaciones solo con votos (en las dos direcciones), nunca con respuestas, y exige Var[p] < 1e-4 (≈ 900–2.500 interacciones por pareja). H2 de la IA usa ≥ 5 votos: no es "heredado de FAULTANA". Añadir a la tabla D de `AI-USE.md`. **Corregido el 2026-11-21:** el «nunca» y el rango de interacciones no tienen cita; ver `BASE-VERIFICADA.md` (F1, F2 y la cifra derivada).
 - FAULTANA ya midió antagonismo y alineamiento por tema en DerStandard (Fig. 3; solo votos, 2014–2021).
 - El OR = 3,49 por votante sale de `CODE-REVIEW.md`; su script (`h1_voter_strata.py`) no está en el repositorio, así que no es reproducible. Descartado como resultado de referencia.
@@ -95,12 +117,7 @@ La tesis principal busca quién responde a quién, y esta sección busca si resp
 4. **Book updated** with the findings of the reading passes (null model from Gomez/Lan Ceqin, faction baseline check, H4 additions, joint inference procedure, Lan Ceqin periods, glossary).
 5. Memory index updated (papers summary location).
 
-**Findings that matter for the thesis**
-- Cheng 2014 seems to contradict H4 but measures a different outcome; its "no feedback predicts leaving" agrees with our `got_any_reply` HR 0.95. State this explicitly.
-- Leskovec 2010: partitions must be compared with shuffled-sign and degree-preserving baselines; not yet done for the FAULTANA factions.
-- Lan Ceqin's periods: before 2020-W09, 2020-W09 to 2021-W52, from 2022-W01. Use them for the period split.
-- A stronger null can be fitted from the Gomez/Aragon thread-growth models.
-- Simonsohn joint inference needs resampling under the null with the same units across specifications.
+**Findings that matter for the thesis** *[Eliminado en el barrido del 2026-11-21: afirmaciones de la literatura sin cita precisa. Recuperable en el commit `4106db3`.]*
 
 **Not done / not obtained**
 - Hernan and Robins, *What If* (Harvard server blocked the download); Muchnik et al. 2013 (no free full text); Andreas's reply-behaviour papers (titles unknown). FAULTANA figures never inspected.

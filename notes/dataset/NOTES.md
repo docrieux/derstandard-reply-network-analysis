@@ -33,12 +33,9 @@ Disk C: 953 GB, **779 GB free** on 2026-10-06. Everything fits, but the full dow
 
 ## Embeddings decision (after asking the user)
 User: "Download the thing you deem necessary to run the tests and get a significant result."
-→ **Not downloading embeddings.** Reasons:
-- "Opposed positions" can be measured directly at full scale with the signed vote network. For each reply A→B: did A downvote or upvote B (or B's comments in general)? Do A and B fall in opposing factions (`faction_users`, or factions derived from signed votes as in FAULTANA)? That yields millions of reply pairs, so plenty of statistical power.
-- Embeddings only give semantic similarity, not agreement or disagreement. They would be a weak, secondary proxy for stance and cost 508 GB plus about 3.5 h.
+→ **Not downloading embeddings.** (The AI's reasons were removed in the 2026-11-21 sweep because they had no source.)
 - If needed later: `python download.py ../../../data/derstandard --include-embeddings`, or download a subset by editing `plan()`.
 
-Observed throughput: ~40 MB/s with 4 workers (core 29.2 GB ≈ 12 min).
 
 ## Files here
 - `files_metadata.json` — raw Dataverse file listing
@@ -46,9 +43,9 @@ Observed throughput: ~40 MB/s with 4 workers (core 29.2 GB ≈ 12 min).
 - `download.py` — downloader; `download.log` — timestamped progress and retries
 
 ## Result (2026-10-06 19:42)
-- **Done.** All 289 non-embedding files were downloaded to `data/derstandard/` and every one passed its size and MD5 check (list in `data/derstandard/.verified`). Zero retries; ~46 MB/s; 19:31 → 19:42.
+- **Done.** All 289 non-embedding files were downloaded to `data/derstandard/` and every one passed its size and MD5 check (list in `data/derstandard/.verified`). 19:31 → 19:42 (`download.log`).
 - On disk: 28 GB (comments 6.8 GB / 120 files, votes 21 GB / 120 files, articles 58 MB, users 17 MB, summary 13 MB, scripts). C: now has 751 GB free.
-- Formats confirmed: TSV with header, `NA` for missing. User and comment IDs are 16-hex hashes; timestamps are unix seconds. In `users_file`, `First_Comment = 0` means the user never commented (voter-only).
+- Formats confirmed: TSV with header, `NA` for missing. User and comment IDs are 16-hex hashes; timestamps are unix seconds. In `users_file`, `First_Comment = 0` means the user never commented (verified 2026-11-21: `BASE-VERIFICADA.md`, H11). IDs are 16 lowercase hex characters (H10).
 - Note: votes rows can have `Author_Id = NA` (deleted author). Handle this when joining replies to votes.
 
 ## Next steps for the analysis
