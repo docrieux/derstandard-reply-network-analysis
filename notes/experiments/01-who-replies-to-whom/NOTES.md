@@ -14,6 +14,7 @@ Todas del planteamiento del 2026-11-19; el texto completo está en [[PLAN]].
 | 7 | Estratos = votante × nivel de polémica; medida: RR de Mantel–Haenszel, más las proporciones simples | OR de Mantel–Haenszel como secundaria (quitada el 2026-11-21: su justificación no tenía fuente, `BASE-VERIFICADA.md`, L1) | El RR responde «cuántas veces es más probable un voto negativo cuando responde» | [me] |
 | 8 | Bootstrap por votante | | | [me] |
 | 9 | No formular la pregunta de los votos entre facciones | | Sería un razonamiento circular | [me] |
+| 10 | Población de la pregunta central: las respuestas limpias en las que quien responde (A) y el autor del comentario respondido (B) están etiquetados en FAULTANA: 11.302.013 (25,48 % de 44.350.672; `BASE-VERIFICADA.md`, H12). Decidido el 2026-11-21 | Asignar facción a usuarios sin etiqueta (el diseño antiguo lo intentó y dio AUC 0,63) | Sin las dos etiquetas no se puede decir si la respuesta es entre facciones o dentro de una | [me] |
 
 ## Limitaciones de los datos
 Apuntadas en el repaso del 2026-11-21 [AI, a petición mía]. Son hechos de los datos, no decisiones. Fuentes en `notes/method/BASE-VERIFICADA.md`, §3.

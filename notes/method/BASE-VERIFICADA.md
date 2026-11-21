@@ -79,6 +79,7 @@ Archivo: `notes/papers/Fraxanet2025_derstandard-dataset.pdf`, versión **arXiv:2
 | H8 | El año máximo en `reply_edges` es 2023, aunque el dataset acaba el 2022-12-31. | `prep-results/run.log` | Sí |
 | H10 | Todos los identificadores de los TSV crudos son 16 caracteres hexadecimales en minúscula: `Comment_Id`, `Author_Id`, `Parent_Id`, `Origin_Parent_Id` (75.644.850 comentarios); `Comment_Id`, `Voter_Id`, `Author_Id` (412.511.165 votos); `User_Id`; `userid` de facciones; `Comment_Id` de inconsistencias. 0 excepciones (sin contar NA). Por tanto, la conversión a entero de 64 bits de `00_to_parquet.py` no pierde información. En los votos, `Pos`/`Neg` es siempre (1,0) o (0,1). | Consulta DuckDB con `regexp_full_match(id, '[0-9a-f]{16}')` (2026-11-21) | No, consulta puntual |
 | H11 | En `users_file`, `First_Comment = 0` ⇔ `N_comments = 0` (36.755 usuarios, también `Last_Comment = 0`). `First_vote = 0` en 47.992 usuarios, ninguno ha dado votos. El 0 significa «sin actividad de ese tipo», así que el NULL de `00_to_parquet.py` es correcto. | Consulta DuckDB sobre `users_file` (2026-11-21) | No, consulta puntual |
+| H12 | Cobertura de facciones en las 44.350.672 respuestas limpias: los dos usuarios etiquetados en 11.302.013 (25,48 %); solo quien responde en 11.263.454 (25,40 %); solo el autor del comentario respondido en 10.476.843 (23,62 %); ninguno en 11.308.362 (25,50 %). De los 14.817 etiquetados, 14.647 aparecen respondiendo y 14.606 recibiendo respuestas. Cuenta respuestas de todos los años, aunque las etiquetas son de 2014–2021 (D1). | `check_faction_coverage.py`, 2026-11-21 | Sí, `code/dataset-checks/` |
 
 ---
 
@@ -126,7 +127,7 @@ Regla: toda conclusión o dato sin fuente (literatura citada o resultado de cód
 | Qué | Por qué se descarta | Fecha |
 |---|---|---|
 | OR = 3,49 por votante (`CODE-REVIEW.md`) | Su script (`h1_voter_strata.py`) no está en el repositorio. | 2026-11-19 |
-| Cobertura de facciones en las respuestas: 25,5 % con los dos usuarios etiquetados, 74,5 % con al menos uno | Consulta del 19/11 en un script temporal no guardado. | 2026-11-21 |
+| Cobertura de facciones en las respuestas: 25,5 % con los dos usuarios etiquetados, 74,5 % con al menos uno | Consulta del 19/11 en un script temporal no guardado. **Recalculada el 2026-11-21 con script guardado: mismas cifras (H12).** | 2026-11-21 |
 | «FAULTANA **nunca** usa respuestas» (WORKLOG 19/11) | Lo verificado es F1: las interacciones son votos. El «nunca» no tiene cita. | 2026-11-21 |
 | «≈ 900–2.500 interacciones por pareja» (WORKLOG 19/11) | Sustituido por la cifra derivada de F2 y F3 (sección 2). | 2026-11-21 |
 | Explicación del año 2023 por zona horaria | Era una conjetura. Queda solo el hecho (H8, sección 3). | 2026-11-21 |
