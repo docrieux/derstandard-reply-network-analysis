@@ -8,6 +8,7 @@ tfg/
 ├── data/derstandard/             dataset crudo y derived/ (~42 GB, fuera de git)
 ├── code/
 │   ├── pyproject.toml            entorno uv compartido
+│   ├── dataset-prep/             TSV → Parquet (00) y respuestas A→B con su embudo (01)
 │   ├── dataset-checks/           comprobaciones del dataset (duplicados, autovotos)
 │   ├── experiments/              experimentos activos (vacío de momento)
 │   └── _obsoleto/                código del diseño antiguo, guardado como registro

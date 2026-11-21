@@ -1,8 +1,11 @@
 """Step 0: convert raw TSVs to typed Parquet (hex ids -> UBIGINT, NA -> NULL).
 
+Moved from code/_obsoleto/01-reply-opposition-lifetime/ on 2026-11-21. Run from tfg/code:
+  uv run python dataset-prep/00_to_parquet.py
+
 Each output is skipped if it already exists; delete it to rebuild.
 """
-from common import DERIVED, RAW, Step, connect, hexid, log
+from prep_common import DERIVED, RAW, Step, connect, hexid, log
 
 con = connect()
 csv = "delim='\t', header=true, nullstr='NA', all_varchar=true"
