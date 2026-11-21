@@ -1,0 +1,291 @@
+2026-10-06 19:49:16 [comments] start
+2026-10-06 19:49:34 [comments] done in 18.2s
+2026-10-06 19:49:34 [votes] start
+2026-10-06 19:50:24 [votes] done in 49.6s
+2026-10-06 19:50:24 [users/articles/factions/inconsistent] start
+2026-10-06 19:50:24 [users/articles/factions/inconsistent] done in 0.4s
+2026-10-06 19:50:25 [check] comments: [(75644850, 53617134, 5872946)]
+2026-10-06 19:50:25 [check] votes: [(412511165, 319154131, 93357034, 0)]
+2026-10-06 19:50:25 [check] users: [(247863, 211108, 199871)]
+2026-10-06 19:50:25 [check] articles: [(586942,)]
+2026-10-06 19:50:26 [check] factions: [(1, 9278), (2, 5539)]
+2026-10-06 19:50:26 [check] inconsistent: [('Missing article', 382167), ('Inconsistent timestamp', 1208)]
+2026-10-06 19:50:49 [reply_edges] start
+2026-10-06 19:51:00 [funnel] {'replies': 53960344, 'inconsistent': 327132, 'parent_missing': 11, 'deleted_author': 8058871, 'self_reply': 781380}
+2026-10-06 19:51:08 [reply_edges] done in 18.3s
+2026-10-06 19:51:09 [check] reply_edges: {'n': 44792950, 'repliers': 159595, 'targets': 160799, 'parent_after_reply': 26, 'no_tenure': 0, 'min("year")': 2013, 'max("year")': 2023}
+2026-10-06 19:57:18 [comments] start
+2026-10-06 19:57:37 [comments] done in 19.1s
+2026-10-06 19:57:37 [votes] start
+2026-10-06 19:58:26 [votes] done in 49.7s
+2026-10-06 19:58:26 [votes_clean] start
+2026-10-06 20:03:56 [votes_clean] done in 329.6s
+2026-10-06 20:03:56 [users/articles/factions/inconsistent] start
+2026-10-06 20:03:57 [users/articles/factions/inconsistent] done in 0.6s
+2026-10-06 20:03:57 [check] comments: [(75644850, 53617134, 5872946)]
+2026-10-06 20:03:58 [check] votes: [(412511165, 319154131, 93357034, 0)]
+2026-10-06 20:04:01 [check] votes_raw_null_voter: [(27122483,)]
+2026-10-06 20:06:40 [check] votes_raw_conflicting_pairs: [(0,)]
+2026-10-06 20:06:45 [check] votes_clean: [(383858436, 297912767, 85945669, 355359586)]
+2026-10-06 20:06:45 [check] users: [(247863, 211108, 199871)]
+2026-10-06 20:06:45 [check] articles: [(586942,)]
+2026-10-06 20:06:45 [check] factions: [(1, 9278), (2, 5539)]
+2026-10-06 20:06:45 [check] inconsistent: [('Missing article', 382167), ('Inconsistent timestamp', 1208)]
+2026-10-06 20:06:47 [reply_edges] start
+2026-10-06 20:06:54 [funnel] {'replies': 53960344, 'inconsistent': 327132, 'parent_missing': 11, 'deleted_author': 8058871, 'self_reply': 781380}
+2026-10-06 20:07:01 [reply_edges] done in 14.3s
+2026-10-06 20:07:02 [check] reply_edges: {'n': 44792950, 'repliers': 159595, 'targets': 160799, 'parent_after_reply': 26, 'no_tenure': 0, 'min("year")': 2013, 'max("year")': 2023}
+2026-10-06 20:07:44 [comments.parquet] start
+2026-10-06 20:08:07 [comments.parquet] done in 23.2s
+2026-10-06 20:08:07 [votes] exists, skipping
+2026-10-06 20:08:07 [votes_clean] exists, skipping
+2026-10-06 20:08:07 [users.parquet] exists, skipping
+2026-10-06 20:08:07 [articles.parquet] exists, skipping
+2026-10-06 20:08:07 [factions.parquet] exists, skipping
+2026-10-06 20:08:07 [inconsistent.parquet] exists, skipping
+2026-10-06 20:08:09 [check] comments: [(75385329, 75385329, 53427803, 5851814)]
+2026-10-06 20:08:10 [check] votes: [(412511165, 319154131, 93357034, 0)]
+2026-10-06 20:08:11 [check] votes_raw_null_voter: [(27122483,)]
+2026-10-06 20:08:12 [check] votes_clean: [(383858436, 297912767, 85945669, 355359586)]
+2026-10-06 20:08:12 [check] users: [(247863, 211108, 199871)]
+2026-10-06 20:08:12 [check] articles: [(586942,)]
+2026-10-06 20:08:12 [check] factions: [(1, 9278), (2, 5539)]
+2026-10-06 20:08:12 [check] inconsistent: [('Missing article', 382167), ('Inconsistent timestamp', 1208)]
+2026-10-06 20:08:12 [reply_edges] start
+2026-10-06 20:08:20 [funnel] {'replies': 53427803, 'inconsistent': 326643, 'parent_missing': 11, 'deleted_author': 7976578, 'self_reply': 773899}
+2026-10-06 20:08:29 [reply_edges] done in 16.6s
+2026-10-06 20:08:30 [check] reply_edges: {'n': 44350672, 'repliers': 159595, 'targets': 160799, 'parent_after_reply': 26, 'no_tenure': 0, 'min("year")': 2013, 'max("year")': 2023}
+2026-10-06 20:08:56 [null_edges] start
+2026-10-06 20:09:53 [null_edges] done in 57.0s
+2026-10-06 20:09:55 [check] null_edges: {'replies': 44350672, 'with_null': 44349679, 'null_equals_true_target': 1760319, 'null_is_self': 0, 'mean_draw': 0.024757856759233816}
+2026-10-06 20:09:59 [check] null comment earlier & same article: [(44349679, 0, 0)]
+2026-10-06 20:10:33 [dyads] start
+2026-10-06 20:10:40 [dyads] distinct directed pairs: 76,036,284
+2026-10-06 20:11:06 [dyads] done in 32.4s
+2026-10-06 20:11:06 [edges_stance] start
+2026-10-06 20:11:47 [edges_stance] done in 41.5s
+2026-10-06 20:11:49 [check] edges_stance: {'n': 44350672, 'p_voted_parent': 0.25518292033996687, 'p_voted_null': 0.05430154474322283, 'p_down_parent': 0.5248113237388993, 'p_down_null': 0.28955865316342166, 'p_any_ab': 0.6637963005385803, 'p_any_anull': 0.5673032192161598}
+2026-10-06 20:12:46 [h1_strata] start
+2026-10-06 20:13:20 [h1_strata] done in 33.5s
+2026-10-06 20:13:20 [h1] informative comments: 8,117,960; replier votes 10,304,610; non-replier votes 108,940,236
+2026-10-06 20:13:20 [h1] P(down|replier)=0.533 P(down|non-replier)=0.301 OR_MH=4.43 [4.42, 4.44]
+2026-10-06 20:14:21 [h1] bootstrap 95% CI over comments: [4.42, 4.44]
+2026-10-06 20:14:27 [h1] wrote 04_h1_comment_level.csv, 04_h1_by_year.png
+2026-10-06 20:15:36 [h2_edge_metrics] start
+2026-10-06 20:15:40 [h2_edge_metrics] done in 4.4s
+2026-10-06 20:15:44 [h2:all] p_any=0.664 vs 0.567, neg_share=0.071 vs 0.045, mean_Ep=0.511 vs 0.585, p_negedge5=0.324 vs 0.182, p_negedgeF=0.094 vs 0.038 | FAULTANA-defined edges true=1510973 null=1197820
+2026-10-06 20:15:49 [h2:excl] p_any=0.594 vs 0.556, neg_share=0.069 vs 0.045, mean_Ep=0.529 vs 0.587, p_negedge5=0.314 vs 0.181, p_negedgeF=0.094 vs 0.038 | FAULTANA-defined edges true=1510420 null=1197429
+2026-10-06 20:15:49 [h3_factions] start
+2026-10-06 20:15:51 [h3]                  side    n_edges  cross_share  cross_from_F1  cross_from_F2 |                  null 11493326.0     0.232318       0.136995       0.844060 |                  true 11301816.0     0.260405       0.166790       0.840799 | random_mixing_by_size        NaN     0.468161       0.373827       0.626173
+2026-10-06 20:15:51 [h3] stance by faction relation:  cross_faction       n  p_down_parent  dyad_neg_share |          False 8358908       0.370193        0.024623 |           True 2943105       0.646174        0.531318
+2026-10-06 20:15:51 [h3_factions] done in 2.2s
+2026-10-06 20:15:51 [faction_projection] start
+2026-10-06 20:16:07 [proj] in-sample validation on 14,787 labelled users: AUC=0.629, accuracy(score>0)=0.676
+2026-10-06 20:16:07 [proj] coverage (faction_proj, labelled, n): [(1, False, 21476), (1, True, 9264), (2, False, 6374), (2, True, 5523), (None, False, 137568)]
+2026-10-06 20:16:08 [h3-proj] side  cross_share        n | true     0.297293 19502443 | null     0.245250 19891124
+2026-10-06 20:16:08 [faction_projection] done in 16.7s
+2026-10-06 20:16:08 [reply_back] start
+2026-10-06 20:16:12 [reply-back]             a_vote        n  p_b_replies_back |     A did not vote 33033138          0.297900 | A downvoted parent  5939570          0.317738 |   A upvoted parent  5377964          0.166437
+2026-10-06 20:16:12 [reply_back] done in 4.1s
+2026-10-06 20:16:13 [figs] wrote 05_h2_dyad.png
+2026-10-06 20:17:32 [life] {'users': 247863, 'commenters': 211108, 'voter_only': 36755, 'share_right_censored': np.float64(0.30303433751709613), 'share_left_censored': np.float64(0.16550675171364826), 'share_lifetime_lt_1day': np.float64(0.26707495673012915), 'share_lifetime_lt_30days': np.float64(0.3789472410162065), 'median_life_days_raw': np.float64(202.38221064814815), 'share_single_comment': np.float64(0.20337041026696198)}
+2026-10-06 20:17:34 [life] KM: [{'cohort': 2014, 'n': 20274, 'median_years': 1.3557376986843106, 'surv_1y': 0.526635099141758, 'surv_3y': 0.41363322481996606}, {'cohort': 2016, 'n': 16018, 'median_years': 0.8063423073998022, 'surv_1y': 0.48439255837183154, 'surv_3y': 0.36315395180422017}, {'cohort': 2018, 'n': 14752, 'median_years': 0.41345802595888154, 'surv_1y': 0.4417706073752714, 'surv_3y': 0.3008405639913233}, {'cohort': 2020, 'n': 21462, 'median_years': 0.38551483636271455, 'surv_1y': 0.41403410679340236, 'surv_3y': 0.2814771201234792}, {'cohort': 2022, 'n': 18859, 'median_years': inf, 'surv_1y': 0.6058880252899099, 'surv_3y': 0.6058880252899099}]
+2026-10-06 20:17:34 [tenure] replier_tenure target_tenure        n  p_down_parent |        1: <30d       1: <30d    26897       0.591897 |        1: <30d     2: 30d-1y    98323       0.622118 |        1: <30d       3: 1-3y   113650       0.624234 |        1: <30d        4: 3y+   590692       0.619820 |      2: 30d-1y       1: <30d   108921       0.622422 |      2: 30d-1y     2: 30d-1y   416386       0.572003 |      2: 30d-1y       3: 1-3y   471135       0.563117 |      2: 30d-1y        4: 3y+  2406741       0.531803 |        3: 1-3y       1: <30d   132136       0.648498 |        3: 1-3y     2: 30d-1y   492962       0.595660 |        3: 1-3y       3: 1-3y   647062       0.566310 |        3: 1-3y        4: 3y+  3206269       0.518381 |         4: 3y+       1: <30d   733691       0.681397 |         4: 3y+     2: 30d-1y  2686210       0.609488 |         4: 3y+       3: 1-3y  3462404       0.565408 |         4: 3y+        4: 3y+ 18371967       0.483128
+2026-10-06 20:17:34 [h4_features] start
+2026-10-06 20:17:36 [h4_features] done in 1.4s
+2026-10-06 20:17:36 [h4] commenters entering 2013-07..2022-04: 165,135; gone before day 30: 40.2%
+2026-10-06 20:17:36 [h4] landmark population: 98,670; events (left before 2022-07): 59.1%
+2026-10-06 20:17:36 [h4_cox] start
+2026-10-06 20:17:43 [h4] hazard ratios per SD (binary for got_any_reply):
+                          exp(coef)  exp(coef) lower 95%  exp(coef) upper 95%              p
+covariate                                                                                   
+downvote_share_recv        1.119099             1.109616             1.128663  4.373494e-148
+hostile_reply_share_recv   1.097159             1.082966             1.111537   2.805806e-44
+hostile_reply_share_sent   1.102553             1.091880             1.113330   3.825115e-86
+got_any_reply              1.082030             1.056867             1.107791   5.130514e-11
+log_comments               1.378488             1.343763             1.414110  2.963426e-134
+log_articles               0.985411             0.962049             1.009340   2.299388e-01
+2026-10-06 20:17:45 [h4] PH test (20k sample):
+                          test_statistic         p  -log2(p)
+downvote_share_recv             1.980955  0.159290  2.650274
+got_any_reply                   0.095983  0.756704  0.402199
+hostile_reply_share_recv        0.451332  0.501703  0.995094
+hostile_reply_share_sent        0.699812  0.402847  1.311697
+log_articles                    4.695482  0.030242  5.047302
+log_comments                    6.232551  0.012542  6.317055
+2026-10-06 20:17:45 [h4_cox] done in 8.8s
+2026-10-06 20:17:45 [figs] wrote 06_lifetime_ccdf_km.png, 06_h4_cox.png
+2026-10-06 20:18:01 [h4_features] start
+2026-10-06 20:18:03 [h4_features] done in 1.3s
+2026-10-06 20:18:03 [h4] commenters entering 2013-07..2022-04: 165,135; gone before day 30: 40.2%
+2026-10-06 20:18:03 [h4] landmark population: 98,670; events (left before 2022-07): 59.1%
+2026-10-06 20:18:54 [life] {'users': 247863, 'commenters': 211108, 'voter_only': 36755, 'share_right_censored': np.float64(0.30303433751709613), 'share_left_censored': np.float64(0.16550675171364826), 'share_lifetime_lt_1day': np.float64(0.26707495673012915), 'share_lifetime_lt_30days': np.float64(0.3789472410162065), 'median_life_days_raw': np.float64(202.38221064814815), 'share_single_comment': np.float64(0.20337041026696198)}
+2026-10-06 20:18:55 [life] KM: [{'cohort': 2014, 'n': 20274, 'median_years': 1.3557376986843106, 'surv_1y': 0.526635099141758, 'surv_3y': 0.41363322481996606}, {'cohort': 2016, 'n': 16018, 'median_years': 0.8063423073998022, 'surv_1y': 0.48439255837183154, 'surv_3y': 0.36315395180422017}, {'cohort': 2018, 'n': 14752, 'median_years': 0.41345802595888154, 'surv_1y': 0.4417706073752714, 'surv_3y': 0.3008405639913233}, {'cohort': 2020, 'n': 21462, 'median_years': 0.38551483636271455, 'surv_1y': 0.41403410679340236, 'surv_3y': 0.2814771201234792}, {'cohort': 2022, 'n': 18859, 'median_years': inf, 'surv_1y': 0.6058880252899099, 'surv_3y': 0.6058880252899099}]
+2026-10-06 20:18:56 [tenure] replier_tenure target_tenure        n  p_down_parent |        1: <30d       1: <30d    26897       0.591897 |        1: <30d     2: 30d-1y    98323       0.622118 |        1: <30d       3: 1-3y   113650       0.624234 |        1: <30d        4: 3y+   590692       0.619820 |      2: 30d-1y       1: <30d   108921       0.622422 |      2: 30d-1y     2: 30d-1y   416386       0.572003 |      2: 30d-1y       3: 1-3y   471135       0.563117 |      2: 30d-1y        4: 3y+  2406741       0.531803 |        3: 1-3y       1: <30d   132136       0.648498 |        3: 1-3y     2: 30d-1y   492962       0.595660 |        3: 1-3y       3: 1-3y   647062       0.566310 |        3: 1-3y        4: 3y+  3206269       0.518381 |         4: 3y+       1: <30d   733691       0.681397 |         4: 3y+     2: 30d-1y  2686210       0.609488 |         4: 3y+       3: 1-3y  3462404       0.565408 |         4: 3y+        4: 3y+ 18371967       0.483128
+2026-10-06 20:18:56 [h4_features] start
+2026-10-06 20:18:57 [h4_features] done in 1.2s
+2026-10-06 20:18:57 [h4] commenters entering 2013-07..2022-04: 165,135; gone before day 30: 40.2%
+2026-10-06 20:18:57 [h4] landmark population: 98,670; events (left before 2022-07): 59.1%
+2026-10-06 20:18:57 [h4_cox] start
+2026-10-06 20:19:04 [h4] hazard ratios per SD (binary for got_any_reply):
+                          exp(coef)  exp(coef) lower 95%  exp(coef) upper 95%              p
+covariate                                                                                   
+downvote_share_recv        1.113720             1.104138             1.123385  8.194293e-132
+hostile_reply_share_recv   1.058703             1.049837             1.067645   2.509889e-40
+hostile_reply_share_sent   1.040121             1.032030             1.048275   5.478163e-23
+got_any_reply              0.945694             0.927509             0.964235   1.736671e-08
+log_comments               1.228727             1.217698             1.239855   0.000000e+00
+2026-10-06 20:19:30 [h4] univariate HRs: {'downvote_share_recv': np.float64(1.146), 'hostile_reply_share_recv': np.float64(1.102), 'hostile_reply_share_sent': np.float64(1.049), 'got_any_reply': np.float64(1.149), 'log_comments': np.float64(1.211)}
+2026-10-06 20:19:31 [h4] PH test (20k sample):
+                          test_statistic         p  -log2(p)
+downvote_share_recv             0.058461  0.808945  0.305887
+got_any_reply                   2.625129  0.105184  3.249013
+hostile_reply_share_recv        0.135945  0.712346  0.489349
+hostile_reply_share_sent        0.003878  0.950343  0.073480
+log_comments                    0.634146  0.425838  1.231622
+2026-10-06 20:19:31 [h4_cox] done in 34.0s
+2026-10-06 20:19:31 [figs] wrote 06_lifetime_ccdf_km.png, 06_h4_cox.png
+2026-10-06 20:20:33 [life] {'users': 247863, 'commenters': 211108, 'voter_only': 36755, 'share_right_censored': np.float64(0.30303433751709613), 'share_left_censored': np.float64(0.16550675171364826), 'share_lifetime_lt_1day': np.float64(0.26707495673012915), 'share_lifetime_lt_30days': np.float64(0.3789472410162065), 'median_life_days_raw': np.float64(202.38221064814815), 'share_single_comment': np.float64(0.20337041026696198)}
+2026-10-06 20:20:34 [life] KM: [{'cohort': 2014, 'n': 20274, 'median_years': 1.3557376986843106, 'surv_1y': 0.526635099141758, 'surv_3y': 0.41363322481996606}, {'cohort': 2016, 'n': 16018, 'median_years': 0.8063423073998022, 'surv_1y': 0.48439255837183154, 'surv_3y': 0.36315395180422017}, {'cohort': 2018, 'n': 14752, 'median_years': 0.41345802595888154, 'surv_1y': 0.4417706073752714, 'surv_3y': 0.3008405639913233}, {'cohort': 2020, 'n': 21462, 'median_years': 0.38551483636271455, 'surv_1y': 0.41403410679340236, 'surv_3y': 0.2814771201234792}, {'cohort': 2022, 'n': 18859, 'median_years': inf, 'surv_1y': 0.6058880252899099, 'surv_3y': 0.6058880252899099}]
+2026-10-06 20:20:35 [tenure] replier_tenure target_tenure        n  p_down_parent |        1: <30d       1: <30d    26897       0.591897 |        1: <30d     2: 30d-1y    98323       0.622118 |        1: <30d       3: 1-3y   113650       0.624234 |        1: <30d        4: 3y+   590692       0.619820 |      2: 30d-1y       1: <30d   108921       0.622422 |      2: 30d-1y     2: 30d-1y   416386       0.572003 |      2: 30d-1y       3: 1-3y   471135       0.563117 |      2: 30d-1y        4: 3y+  2406741       0.531803 |        3: 1-3y       1: <30d   132136       0.648498 |        3: 1-3y     2: 30d-1y   492962       0.595660 |        3: 1-3y       3: 1-3y   647062       0.566310 |        3: 1-3y        4: 3y+  3206269       0.518381 |         4: 3y+       1: <30d   733691       0.681397 |         4: 3y+     2: 30d-1y  2686210       0.609488 |         4: 3y+       3: 1-3y  3462404       0.565408 |         4: 3y+        4: 3y+ 18371967       0.483128
+2026-10-06 20:20:35 [h4_features] start
+2026-10-06 20:20:36 [h4_features] done in 1.2s
+2026-10-06 20:20:36 [h4] commenters entering 2013-07..2022-04: 165,135; gone before day 30: 40.2%
+2026-10-06 20:20:36 [h4] landmark population: 98,670; events (left before 2022-07): 59.1%
+2026-10-06 20:20:36 [h4_cox] start
+2026-10-06 20:20:43 [h4] hazard ratios per SD (binary for got_any_reply):
+                          exp(coef)  exp(coef) lower 95%  exp(coef) upper 95%              p
+covariate                                                                                   
+downvote_share_recv        1.113720             1.104138             1.123385  8.194293e-132
+hostile_reply_share_recv   1.058703             1.049837             1.067645   2.509889e-40
+hostile_reply_share_sent   1.040121             1.032030             1.048275   5.478163e-23
+got_any_reply              0.945694             0.927509             0.964235   1.736671e-08
+log_comments               1.228727             1.217698             1.239855   0.000000e+00
+2026-10-06 20:21:08 [h4] univariate HRs: {'downvote_share_recv': np.float64(1.146), 'hostile_reply_share_recv': np.float64(1.102), 'hostile_reply_share_sent': np.float64(1.049), 'got_any_reply': np.float64(1.149), 'log_comments': np.float64(1.211)}
+2026-10-06 20:21:10 [h4] PH test (20k sample):
+                          test_statistic         p  -log2(p)
+downvote_share_recv             0.650467  0.419946  1.251725
+got_any_reply                   2.356880  0.124731  3.003103
+hostile_reply_share_recv        3.556401  0.059316  4.075429
+hostile_reply_share_sent        0.039091  0.843268  0.245936
+log_comments                    0.001131  0.973168  0.039239
+2026-10-06 20:21:10 [h4_cox] done in 33.9s
+2026-10-06 20:21:10 [figs] wrote 06_lifetime_ccdf_km.png, 06_h4_cox.png
+2026-10-06 20:21:37 [multiverse_h2] start
+2026-10-06 20:21:49 [multiverse_h2] done in 12.5s
+2026-10-06 20:21:49 [mv-h2] 24 specs; diff range [0.117, 0.206]; all > 0: True
+2026-10-06 20:21:49 [multiverse_h4] start
+2026-10-06 20:24:20 [multiverse_h4] done in 150.9s
+2026-10-06 20:24:20 [mv-h4] downvote_share_recv: HR range [1.104, 1.119]; CI excludes 1 in 18/18 specs
+2026-10-06 20:24:20 [mv-h4] hostile_reply_share_recv: HR range [1.053, 1.078]; CI excludes 1 in 18/18 specs
+2026-10-06 20:24:20 [mv-h4] hostile_reply_share_sent: HR range [1.029, 1.052]; CI excludes 1 in 18/18 specs
+2026-10-06 20:24:21 [figs] wrote 07_multiverse.png
+2026-10-06 20:24:36 [h1_strata] start
+2026-10-06 20:25:09 [h1_strata] done in 33.2s
+2026-10-06 20:25:09 [h1] informative comments: 8,117,960; replier votes 10,304,610; non-replier votes 108,940,236
+2026-10-06 20:25:10 [h1] P(down|replier)=0.533 P(down|non-replier)=0.301 OR_MH=4.43 [4.42, 4.44]
+2026-10-06 20:26:10 [h1] bootstrap 95% CI over comments: [4.42, 4.44]
+2026-10-06 20:26:15 [h1] wrote 04_h1_comment_level.csv, 04_h1_by_year.png
+2026-10-06 20:27:29 [verify] spot-check reply edges vs raw TSV: 5/5 OK
+2026-11-02 11:07:12 [h1_pos] start
+2026-11-02 11:07:47 [h1+] P(up|replier)=0.467 P(up|non-replier)=0.699 OR_up=0.23 [0.23, 0.23] over 8,117,960 comments
+2026-11-02 11:07:47 [h1_pos] done in 34.6s
+2026-11-02 11:07:47 [h2_pos] start
+2026-11-02 11:07:57 [h2+] variant     metric   true   null    diff  diff_lo  diff_hi  n_repliers |    excl  pos_share 0.9305 0.9555 -0.0250  -0.0396  -0.0153      159594 |    excl    mean_Ep 0.5285 0.5870 -0.0584  -0.0606  -0.0565      159594 |    excl p_posedge5 0.6859 0.8186 -0.1327  -0.1392  -0.1264      159594 |    excl p_posedgeF 0.9060 0.9624 -0.0564  -0.0754  -0.0435      159594
+2026-11-02 11:07:58 [h2_pos] done in 10.9s
+2026-11-02 11:07:58 [multiverse_h2_pos] start
+2026-11-02 11:09:33 [mv-h2+] 24 specs; diff range [-0.206, -0.117]; all < 0: True; all > 0: False
+2026-11-02 11:09:33 [multiverse_h2_pos] done in 95.2s
+2026-11-02 11:09:33 [h3_pos] start
+2026-11-02 11:09:36 [h3+]  cross_faction       n  p_up_parent  dyad_pos_share |          False 8358908       0.6298          0.9754 |           True 2943105       0.3538          0.4687
+2026-11-02 11:09:36 [h3_pos] done in 3.0s
+2026-11-02 11:09:36 [h4_pos] start
+2026-11-02 11:09:53 [h4+:positive_only] n=98,670
+                           exp(coef)  exp(coef) lower 95%  exp(coef) upper 95%       p
+covariate                                                                             
+upvote_share_recv             0.8748               0.8678               0.8819  0.0000
+friendly_reply_share_recv     0.9935               0.9849               1.0022  0.1427
+friendly_reply_share_sent     1.0026               0.9945               1.0108  0.5282
+got_any_reply                 0.9337               0.9158               0.9520  0.0000
+log_comments                  1.2251               1.2141               1.2363  0.0000
+2026-11-02 11:10:02 [h4+:joint_pos_and_neg] n=98,670
+                           exp(coef)  exp(coef) lower 95%  exp(coef) upper 95%       p
+covariate                                                                             
+downvote_share_recv           1.1140               1.1042               1.1239  0.0000
+hostile_reply_share_recv      1.0587               1.0498               1.0677  0.0000
+hostile_reply_share_sent      1.0405               1.0324               1.0487  0.0000
+friendly_reply_share_recv     0.9996               0.9909               1.0084  0.9369
+friendly_reply_share_sent     1.0058               0.9976               1.0141  0.1653
+got_any_reply                 0.9463               0.9280               0.9649  0.0000
+log_comments                  1.2285               1.2174               1.2396  0.0000
+2026-11-02 11:10:02 [h4_pos] done in 26.1s
+2026-11-02 11:10:03 [figs] wrote 08_positive_votes.png
+2026-11-02 11:11:02 [population] start
+2026-11-02 11:11:03 [pop] n=98,670; 90th pct lifetime = 7.35 y; top10_all: 9,867 (10.0%), censored 83%; top10_cohort: 9,870 (10.0%), censored 100%; gt2y: 51,542 (52.2%), censored 56%; gt3y: 39,058 (39.6%), censored 59%
+2026-11-02 11:11:03 [population] done in 1.3s
+2026-11-02 11:11:03 [a] early profile:
+group                      top10_all  top10_all  top10_cohort  top10_cohort   gt2y   gt2y   gt3y   gt3y
+long_lived                     False       True         False          True  False   True  False   True
+n                              88803       9867         88800          9870  47128  51542  59612  39058
+median_life_years              1.829      8.458         1.908         5.694  0.772   4.63  1.034  5.544
+median_early_comments            2.0        2.0           2.0           2.0    2.0    2.0    2.0    2.0
+p_got_any_reply                0.631      0.597         0.628         0.626  0.658    0.6   0.65  0.594
+downvote_share_recv            0.296      0.243           0.3         0.204  0.314  0.244  0.307  0.241
+upvote_share_recv              0.704      0.757           0.7         0.796  0.686  0.756  0.693  0.759
+hostile_reply_share_recv       0.167      0.132         0.169         0.118  0.177  0.137  0.173  0.136
+friendly_reply_share_recv        0.1      0.123         0.098          0.14  0.096  0.115  0.098  0.113
+hostile_reply_share_sent       0.169      0.145         0.171         0.122  0.181  0.137  0.176  0.138
+friendly_reply_share_sent      0.123      0.129         0.122         0.151   0.12  0.131  0.123  0.126
+2026-11-02 11:11:03 [logit] start
+2026-11-02 11:11:04 [b] odds ratios per SD of being long-lived:
+     outcome                 covariate  odds_ratio    lo    hi     p     n
+top10_cohort       downvote_share_recv       0.871 0.850 0.893 0.000 98670
+top10_cohort  hostile_reply_share_recv       0.938 0.914 0.962 0.000 98670
+top10_cohort  hostile_reply_share_sent       0.958 0.937 0.979 0.000 98670
+top10_cohort friendly_reply_share_recv       1.024 1.003 1.045 0.024 98670
+top10_cohort friendly_reply_share_sent       1.002 0.981 1.023 0.857 98670
+top10_cohort             got_any_reply       1.046 0.995 1.099 0.076 98670
+top10_cohort              log_comments       0.941 0.918 0.964 0.000 98670
+        gt2y       downvote_share_recv       0.859 0.846 0.873 0.000 81972
+        gt2y  hostile_reply_share_recv       0.925 0.911 0.940 0.000 81972
+        gt2y  hostile_reply_share_sent       0.936 0.923 0.950 0.000 81972
+        gt2y friendly_reply_share_recv       1.005 0.989 1.020 0.552 81972
+        gt2y friendly_reply_share_sent       0.978 0.963 0.992 0.003 81972
+        gt2y             got_any_reply       1.033 0.998 1.069 0.066 81972
+        gt2y              log_comments       0.739 0.726 0.751 0.000 81972
+2026-11-02 11:11:04 [logit] done in 0.7s
+2026-11-02 11:11:04 [c] within long-lived group:
+       group                 covariate  spearman_rho     p    n
+top10_cohort       downvote_share_recv         0.071 0.000 9870
+top10_cohort  hostile_reply_share_recv         0.034 0.001 9870
+top10_cohort  hostile_reply_share_sent         0.052 0.000 9870
+top10_cohort friendly_reply_share_recv        -0.009 0.350 9870
+top10_cohort friendly_reply_share_sent        -0.017 0.097 9870
+top10_cohort              log_comments        -0.088 0.000 9870
+   top10_all       downvote_share_recv         0.020 0.046 9867
+   top10_all  hostile_reply_share_recv         0.022 0.030 9867
+   top10_all  hostile_reply_share_sent         0.013 0.210 9867
+   top10_all friendly_reply_share_recv         0.010 0.334 9867
+   top10_all friendly_reply_share_sent         0.024 0.017 9867
+   top10_all              log_comments        -0.002 0.846 9867
+2026-11-02 11:11:04 [tenure] start
+2026-11-02 11:11:05 [d] stance by tenure:
+    side  long_lived  tenure  n_replies  p_down_parent  p_up_parent  p_voted_parent
+ written       False  1: <1y    4176066          0.544        0.456           0.248
+ written       False 2: 1-2y    2595858          0.525        0.475           0.258
+ written       False 3: 2-3y    2113920          0.535        0.465           0.261
+ written       False  4: 3y+    8005802          0.524        0.476           0.290
+ written        True  1: <1y     449809          0.466        0.534           0.231
+ written        True 2: 1-2y     516582          0.493        0.507           0.226
+ written        True 3: 2-3y     551937          0.503        0.497           0.232
+ written        True  4: 3y+    3279486          0.486        0.514           0.261
+received       False  1: <1y    4625389          0.610        0.390           0.266
+received       False 2: 1-2y    2711317          0.568        0.432           0.259
+received       False 3: 2-3y    2213994          0.556        0.444           0.256
+received       False  4: 3y+    7928909          0.528        0.472           0.259
+received        True  1: <1y     460987          0.494        0.506           0.248
+received        True 2: 1-2y     521321          0.501        0.499           0.244
+received        True 3: 2-3y     540463          0.502        0.498           0.246
+received        True  4: 3y+    3042663          0.465        0.535           0.248
+2026-11-02 11:11:05 [tenure] done in 0.9s
+2026-11-02 11:11:05 [figs] wrote 09_top_decile.png

@@ -1,0 +1,72 @@
+\chapter{What is weak: a critical review}\label{ch:critique}
+
+\begin{idea}
+No coding error changes a headline number, but seven design points limit what the thesis may claim, and they are the ones a committee will find. Know them before it does.
+\end{idea}
+
+The full review is in \file{notes/experiments/01-reply-opposition-lifetime/CODE-REVIEW.md}. This chapter explains the findings in plain words, says what each fix would cost, and tells you what it would change.
+
+\section{The three validity issues}
+
+\subsection*{H-1: deleted users are invisible}
+Users whose accounts were deleted do not appear as authors or voters. If banned or disgusted users delete their accounts, then \emph{the exits most related to hostility are exactly the ones we cannot see}. Direction of bias: probably toward \emph{underestimating} the association between hostility and leaving. Cost of a fix: none possible with this data. \emph{What to write:} state it as a limitation and restrict claims to users who keep an account.
+
+\subsection*{H-2: the long-lived group is selected}
+Explained in Section~\ref{sec:longlived}. Because lifetime ends at the last activity and the window ends in 2022, a large part of the ``top 10\%'' are people who are \emph{still there}. The group is ordered by when users were last seen, and early profiles are compared with a fixed threshold that mixes cohorts. \emph{Fix:} option B (a fixed ``survived $\ge3$ years'' among eligible cohorts) as the headline. Compute: about 5 minutes. Not run.
+
+\subsection*{H-3: untimed votes in H4}
+Votes have only a month. The ``first 30 days'' exposure may include votes cast up to a month later. This blurs the early window and slightly leaks later experience into the exposure. \emph{Fix:} none possible in the data; a sensitivity analysis could use only the comments (timed) to define exposure (hostile replies written and received, no votes).
+
+\section{The six design issues}
+\begin{description}
+  \item[M-1 (H1).] Repliers and other voters are different people, and the interval treats comments as independent. A voter-level version (each voter as own control, with a bootstrap by voter) gives $3.49$ rather than $4.43$. \emph{Write:} report both, and say the first interval is too narrow.
+  \item[M-2 (H2).] Defined-edge subsets differ between real and null pairs. \emph{Fix:} compare on pairs that are defined in \emph{both} or compare votes shares instead of edges.
+  \item[M-3 (null).] Article-level null is easy to beat. \emph{Fix:} add a thread-level null (author of a random earlier comment in the \emph{same thread}), keeping both.
+  \item[M-4 (depth).] The depth breakdown uses pooled shares, which mix compositions. \emph{Fix:} per-edge comparison within depth.
+  \item[M-5 (hostility).] The ``hostile share'' (share of replies where the replier downvoted the parent) mixes how often someone votes with how hostile they are, since only replies where the replier \emph{voted} can be classified. \emph{Fix:} use the share among \emph{voted} replies.
+  \item[M-6 (multiverse).] The multiverse is descriptive. Simonsohn's joint inference is not done; claims must say ``consistent across specifications''.
+\end{description}
+
+\section{Small items}
+There are ten smaller items (L-1 to L-10), for example: how time zones are handled when assigning days; the proportional-hazards test was done on a 20,000-user sample; derived data are not versioned; inconsistent-timestamp comments are not excluded from lifetimes although the dataset authors recommend it (affecting under 0.15\% of users). They are listed in the review with proposed fixes. The ones that would rerun computation are on hold.
+
+\section{New analyses designed but not run}
+You decided today to wait. For the record, and so that you can pick them up in the order that is most useful:
+
+\begin{longtable}{@{}p{4cm} p{7cm} p{2.4cm}@{}}
+\toprule
+Analysis & Question it answers & Compute \\
+\midrule
+\endhead
+Period split (Lan Ceqin's periods: before 2020-W09; 2020-W09 to end 2021; from 2022-W01) & Does H1--H4 change before / during / after the 2020 COVID shift? Thread width and depth changed in those periods, so the pooled depth gradient mixes them. & minutes \\
+Topic split (\texttt{Topic\_1}, top 8) & Is opposition concentrated in some topics? & minutes \\
+Both directions of each pair & Is $A$'s stance toward $B$ mirrored by $B$'s toward $A$? & minutes \\
+Activity strata (tertiles of comments) & Is the effect only a heavy-user effect? & minutes \\
+Beta uncertainty propagation & How much do edge classifications change if the relation is itself uncertain? & about 10 min \\
+Thread-level null & M-3 & about 10 min \\
+Model-based null (popularity, recency, root bias, reciprocity, fitted per period) & A harder baseline than any uniform draw (Section~\ref{sec:null}) & fit on hundreds of threads per period; moderate coding \\
+Factions against shuffled-sign and degree-preserving baselines & Do the two FAULTANA factions beat what random signed networks give? (Section~\ref{sec:h3}) & minutes, needs FAULTANA edges \\
+Joint inference across specifications & Is H2 or H4 jointly significant over all specifications? (Section~\ref{sec:multiverse}) & tens of minutes \\
+H4 with and without activity covariate; posts per day and burst measures & What do the vote-based covariates add beyond plain activity? (Section~\ref{sec:h4}) & minutes \\
+Voter-level H1 with cluster bootstrap & M-1 & about 15 min \\
+Equal-coverage H2, per-edge depth & M-2, M-4 & minutes \\
+Redefined long-lived group & H-2 & about 5 min \\
+Investigate the 2022 drop; burst accounts & Platform change, scripted accounts & exploratory \\
+\bottomrule
+\end{longtable}
+Total about 35--50 minutes of compute for the original list; the four new rows add roughly an hour or two including coding. The bottleneck is not time, it is understanding what each result would mean, which is why this book comes first.
+
+\section{A defence checklist}
+\begin{enumerate}
+  \item Why are votes a proxy for stance? What would a counterexample look like (sarcastic upvote, ``dislike'' as agreement with the wrong side)?
+  \item Why compare with a co-present null rather than all users?
+  \item Why is H1's 4.43 not the same as ``4.4 times as likely''?
+  \item What does a hazard ratio of 1.11 mean, and what does it not?
+  \item Which result would change if deleted users were visible?
+  \item Why is the multiverse not a proof of robustness?
+  \item Why is the long-lived group result not yet a conclusion?
+  \item Why does H4 not contradict Cheng et al.\ 2014?
+  \item Do your two factions beat a shuffled-sign baseline? (Honest answer today: not checked.)
+  \item What does the hazard ratio of the vote-based covariates add beyond plain activity?
+\end{enumerate}
+Answers are in the text above; if one is hard, return to the section named in the answer.

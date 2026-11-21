@@ -1,0 +1,72 @@
+\chapter{Sources: what to read, in what order, and why}\label{ch:sources}
+
+\begin{idea}
+About a dozen sources do real work in this thesis; read the first five carefully, the rest when you reach the method they support. Existence of each reference was checked online on 2026-11-02; the reusable per-paper summaries are in \file{notes/papers/PAPERS-SUMMARY.md}.
+\end{idea}
+
+\section{Priority order}
+\begin{enumerate}
+  \item \textbf{Fraxanet et al.\ (2026), the dataset paper.} (21 pages; 1 hour.) What each table is and what is inconsistent. Read the ``Internal consistency'' section twice.
+  \item \textbf{Fraxanet et al.\ (2024), FAULTANA.} (12 pages and SI; 2 hours.) The source of the factions, the Beta prior and thresholds, antagonism and alignment.
+  \item \textbf{Steegen et al.\ (2016)} (11 pages; 1 hour) and \textbf{Simonsohn et al.\ (2020)} (7 pages plus SI; 1.5 hours). Multiverse and specification curves.
+  \item \textbf{Heider (1946)} (5 pages) and \textbf{Cartwright \& Harary (1956)} (17 pages). Balance theory in its original statement; 2 hours together; read the structure theorem in the second.
+  \item \textbf{Lan Ceqin's thesis}, chapter~3 (periods and thread structure) and Appendix~A (generative thread models): the closest prior work on this dataset, and the source of the periods and the null-model idea.
+  \item \textbf{Cheng et al.\ 2014}, for the discussion of H4.
+  \item One survival text (\textbf{Kleinbaum \& Klein}, first chapters) and one categorical-data text (\textbf{Agresti}, chapters on $2\times2$ tables).
+\end{enumerate}
+
+\section{Local PDFs in the papers folder}
+\begin{description}
+  \item[Fraxanet et al.\ 2026, DerStandard dataset.] Table of sizes (586,942 articles; 75.6\,M comments; 412.5\,M votes; 247,863 users), field list, quality warnings (about 8\% deleted authors; vote counts replaced by aggregates from votes files; 1,208 comments with timestamps before their article, recommended to be excluded from lifetimes). Also states that factions are static.
+  \item[Fraxanet et al.\ 2024 and SI, FAULTANA.] Method: find the two-group split that minimises frustrated edges; antagonism $\times$ alignment $=$ polarisation. DerStandard network: about 14.8\,k stable users, 5.56\,M edges, 41\% negative edges, 29\% frustrated edges, largest group 62\%. Edge rule: posterior mean outside $[0.4,0.6]$ and variance below $10^{-4}$. \emph{Caveat for H3:} factions use the same votes as our stance variables.
+  \item[Lan Ceqin 2026, MSc thesis on reciprocity.] Weekly reciprocity networks; a jump in reply reciprocity around 2020-W09; same untimed-vote limitation; her period definitions are the proposed defaults for our period split. Our reply-back table is a signed, comment-level counterpart of her reciprocity.
+  \item[Steegen et al.\ 2016.] Argues that a single analysis hides many arbitrary choices and proposes the multiverse. Section on how to display results.
+  \item[Simonsohn et al.\ 2020 and SI.] Specification curves: define the set of reasonable specifications, plot the sorted estimates, and run a permutation-based joint test. We do only the first two steps.
+  \item[Heider 1946; Cartwright \& Harary 1956.] Balance theory and its graph formalisation: a signed graph is balanced if and only if its nodes split into two groups with positive edges inside and negative between. Cartwright and Harary also warn that \emph{absence of a tie is not a negative tie}, which matters for ``no vote $\ne$ downvote''.
+  \item[D'Ignazi et al.\ 2025; Amarasinghe et al.\ 2026.] Papers from the same group. D'Ignazi: ranking feedback loops amplify extremism (conceptual link only: extreme users engage more, which may confound hostility measures). Amarasinghe: decomposing uncertainty in prevalence estimates (an example of uncertainty accounting, not used here).
+\end{description}
+
+\section{Papers added on 2026-11-03 (downloaded, partly read)}
+Fifteen further PDFs were downloaded from open sources into \file{notes/papers/}; each has an entry (D1--D15) in \file{PAPERS-SUMMARY.md} stating exactly how much was read. In order of usefulness for your thesis:
+\begin{description}
+  \item[Cheng et al.\ 2014, \emph{How community feedback shapes user behavior}.] The closest precedent for H4, and it \emph{appears to disagree} with it: negative feedback keeps people posting, while receiving \emph{no} feedback predicts leaving. Read it before writing the discussion of H4 (see D1 for how the two can be reconciled).
+  \item[Cheng et al.\ 2015, \emph{Antisocial behavior in online discussion communities}.] Banned users, post deletion, and the warning that a downvote may mean disagreement rather than disapproval (a caveat for choice C1).
+  \item[Wang et al.\ 2022, immortal-time review.] Landmark analysis and its cost: only users who survive to the landmark are analysed. Cite it next to Suissa 2008 for C12.
+  \item[Leskovec et al.\ 2010 (two papers) and Easley \& Kleinberg ch.\ 5.] Signed edges, balance versus status theory, and \emph{weak} balance (several groups, not two). Important for the limits of the two-faction view in H3.
+  \item[Danescu-Niculescu-Mizil et al.\ 2013.] User lifecycle and how they define abandonment (one year without posting; users near the end of the data are dropped), to compare with our censoring rule.
+  \item[G\'omez et al.\ 2008 and 2013; Gonzalez-Bailon et al.\ 2010.] Supervisor-group work on reply networks and thread structure. The 2013 generative model (popularity, novelty, root bias) is the principled baseline for a stronger null model.
+  \item[Kunegis et al.\ 2009; Aref \& Wilson 2018; Garimella et al.\ 2018; Kumar et al.\ 2018.] Related work on signed networks, balance measures, controversy and conflict; background only.
+\end{description}
+Not obtained: Hern\'an \& Robins (the Harvard server refused the download; get it from the authors' page) and Muchnik et al.\ 2013 (no free full text). The reading time for these is not included in the priority list above.
+
+
+\textbf{Second reading pass.} The unread parts of Lan Ceqin's thesis (periods, generative thread models), the Simonsohn SI (joint inference), Cheng 2014 and 2015, Danescu-Niculescu-Mizil 2013, G\'omez 2013 and Leskovec 2010 were then read; their findings are entries E1--E7 of \file{PAPERS-SUMMARY.md}, and section F of that file lists six methodological implications (stronger null model, Lan Ceqin's periods, joint inference, H4 additions, a baseline check for the factions, and the caveat on votes). None has been implemented.
+
+\section{Sources not on disk}
+\begin{tabularx}{\textwidth}{@{}l Y l@{}}
+\toprule
+Topic & Source & Where it supports \\
+\midrule
+Signed networks & Leskovec, Huttenlocher \& Kleinberg (2010), \emph{Predicting positive and negative links in online social networks}, WWW & Chapter~\ref{ch:primer} \\
+ & Easley \& Kleinberg (2010), \emph{Networks, Crowds, and Markets}, ch.~5 (free online) & Chapter~\ref{ch:primer} \\
+Lifecycle and churn & Danescu-Niculescu-Mizil et al.\ (2013), \emph{No country for old members}, WWW, 307--318 & H4 \\
+ & Cheng, Danescu-Niculescu-Mizil \& Leskovec (2015), \emph{Antisocial behavior in online discussion communities}, ICWSM & H4 \\
+ & Kraut \& Resnick, \emph{Building Successful Online Communities} (MIT Press) & H4 \\
+Threads & G\'omez, Kaltenbrunner \& L\'opez (2008), WWW, 645--654; G\'omez et al.\ (2013), \emph{World Wide Web} 16(5), 645--675 & replies; the supervisor's own work \\
+MH and variance & Mantel \& Haenszel (1959), JNCI 22, 719--748; Robins, Breslow \& Greenland (1986), Biometrics 42, 311--323 & H1 \\
+Bootstrap & Efron (1979), Annals of Statistics 7(1) (existence not verified in my search) & Section~\ref{sec:bootstrap} \\
+Survival & Kaplan \& Meier (1958); Cox (1972), JRSS B 34, 187--220; Schoenfeld (1982) (not verified); Grambsch \& Therneau (1994), Biometrika 81, 515--526 & H4 \\
+Immortal time / landmark & Suissa (2008), Am J Epidemiology 167, 492--499; Anderson, Cain \& Gelber (1983), J Clin Oncol 1, 710--719 & H4 \\
+Bayes & Gelman et al., \emph{Bayesian Data Analysis} 3rd ed.\ (not verified) & H2, shrinkage \\
+$p$-values and big data & Wasserstein \& Lazar (2016), Am Stat 70(2), 129--133; Lin, Lucas \& Shmueli (2013), ISR 24(4), 906--917 & C16 \\
+Causal vocabulary & Hern\'an \& Robins, \emph{Causal Inference: What If} (free) & Chapter~\ref{ch:primer} \\
+Tools & Raasveldt \& M\"uhleisen (2019), SIGMOD demo; Davidson-Pilon (2019), JOSS 4(40), 1317 & Chapter~\ref{ch:pipeline} \\
+\bottomrule
+\end{tabularx}
+
+\begin{pitfall}
+Citations marked ``not verified'' are standard references that my search did not locate. Check volume and pages before they enter the written thesis. Also, the supervisor's papers on reply behaviour (Andreas's group) are not in \file{notes/papers/}; ask for them.
+\end{pitfall}
+
+\section{Reading strategy}
+Read every paper in three passes: (1) abstract, figures and conclusions (10 minutes) to decide whether it matters; (2) introduction and the section most relevant to your method; (3) only if you will cite or reuse it, the details. After each paper, write three lines in \file{notes/papers/}: what it claims, what you will borrow, what it cannot support in your thesis.

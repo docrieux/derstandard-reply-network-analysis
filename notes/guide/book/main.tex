@@ -1,0 +1,68 @@
+% The TFG book: purpose, data, methods, analyses, sources, and how to build on them.
+% Build (from this folder): pdflatex main.tex  (run twice for the table of contents)
+\documentclass[11pt,a4paper,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs,tabularx,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{url}
+\urlstyle{tt}
+
+\graphicspath{{../../experiments/01-reply-opposition-lifetime/results/}}
+
+\setlist{itemsep=2pt,topsep=4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\renewcommand{\arraystretch}{1.15}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,frame=single,
+  backgroundcolor=\color{black!3},numbers=none,columns=fullflexible,keepspaces=true}
+
+\newcommand{\file}[1]{\path{#1}}
+\newcommand{\todo}[1]{\textcolor{red!70!black}{[#1]}}
+\newcommand{\src}[1]{\textcolor{blue!50!black}{[#1]}}
+
+% Boxes used throughout
+\newtcolorbox{idea}[1][]{colback=blue!4,colframe=blue!50!black,title=In one sentence,fonttitle=\bfseries\small,sharp corners,boxrule=0.5pt,#1}
+\newtcolorbox{pitfall}[1][]{colback=red!4,colframe=red!60!black,title=Pitfall,fonttitle=\bfseries\small,sharp corners,boxrule=0.5pt,#1}
+\newtcolorbox{tryit}[1][]{colback=green!4,colframe=green!40!black,title=Try it yourself,fonttitle=\bfseries\small,sharp corners,boxrule=0.5pt,#1}
+\newtcolorbox{readbox}[1][]{colback=black!4,colframe=black!50,title=How to read this figure,fonttitle=\bfseries\small,sharp corners,boxrule=0.5pt,#1}
+
+\title{\textbf{Who replies to whom, and how long do they stay?}\\[6pt]
+\Large A reader's book on my TFG:\\ replies, vote-based opposition and user lifetime on DerStandard.at}
+\author{Working book, state of 2026-11-03}
+\date{}
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+\mainmatter
+
+\input{ch00-preface}
+\input{ch01-purpose}
+\input{ch02-data}
+\input{ch03-primer}
+\input{ch04-methods}
+\input{ch05-pipeline}
+\input{ch06-results}
+\input{ch07-critique}
+\input{ch08-sources}
+\input{ch09-building}
+
+\appendix
+\input{app-glossary}
+\input{app-exercises}
+\input{app-filemap}
+
+\end{document}

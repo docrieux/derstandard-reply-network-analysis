@@ -1,0 +1,61 @@
+\chapter{Purpose and context}\label{ch:purpose}
+
+\section{The project in one page}
+The TFG is supervised by Andreas Kaltenbrunner (UPF) and uses the \emph{DerStandard} dataset built by his group: ten years (2013--2022) of threaded comments and up/down votes from the forum of an Austrian newspaper, DerStandard.at \src{Fraxanet et al.\ 2026}. In the first meeting (2026-09-30) the task was set as:
+
+\begin{quote}
+\emph{Analyse who replies to whom, whether their positions are opposed, and complement it with an analysis of users' lifetime.}
+\end{quote}
+
+Three words in that sentence need unpacking.
+\begin{description}
+  \item[Replies.] A comment can answer another comment. That creates a directed edge from the replier $A$ to the author $B$ of the comment answered. The dataset gives the parent of each reply, so the reply network is observed, not guessed.
+  \item[Opposed positions.] The dataset has \emph{no comment text}, so we cannot read what people say. What we do have is votes: who gave a thumbs-up or thumbs-down to which comment. We use votes as a \emph{proxy for stance}: if $A$ keeps downvoting $B$'s comments, $A$ is probably against $B$. This is the central modelling choice of the thesis, and you should be ready to defend it and to name its limits (Chapter~\ref{ch:critique}).
+  \item[Lifetime.] For each user, the time between first and last activity. Users who leave are interesting for community health; the question is whether what happens to a newcomer in the first weeks (being downvoted, receiving hostile replies) is related to how long they stay.
+\end{description}
+
+\begin{idea}
+The thesis asks three linked questions: do people reply to those they vote against (stance), is that pattern stronger than chance (a null model), and is early exposure to it related to leaving sooner (survival)?
+\end{idea}
+
+\section{Why these questions matter}
+Online discussion is often described as polarised, and polarisation is usually studied either from text (what people say) or from structure (who interacts with whom). Votes add a third, cheap and abundant signal: explicit approval and disapproval. The group's earlier paper on this forum \src{Fraxanet et al.\ 2024} used votes to find two opposed camps and to separate \emph{antagonism} (how negative interactions are) from \emph{alignment} (how well negativity follows a fault line between camps). Our experiment asks a complementary, finer-grained question at the level of single replies: is the \emph{reply} itself an opposed act?
+
+Two findings from the literature frame the expectation. In large comment communities newcomers who receive negative feedback tend to post less and some leave \src{Cheng et al.\ 2015}, and community lifetimes are shaped by how new members are received \src{Danescu-Niculescu-Mizil et al.\ 2013; Kraut \& Resnick 2012}. We are not testing causal versions of these claims, only whether the associations appear in this dataset.
+
+\textbf{Watch the apparent conflict.} \src{Cheng et al.\ 2014} found that negative feedback keeps people posting, and that users who receive \emph{no} feedback are the most likely to leave. Our H4 finds that a higher early downvote share goes with leaving sooner, while having received any reply goes with staying longer. These are not contradictory, because the outcomes differ (what people do after one evaluation versus how long until their last activity), and the ``ignored users leave'' result agrees with our reply finding. But the thesis must say this explicitly (Section~\ref{sec:h4}).
+
+\section{Hypotheses at a glance}\label{sec:hyp}
+\begin{tabularx}{\textwidth}{@{}l Y Y@{}}
+\toprule
+ & Plain statement & Level of analysis \\
+\midrule
+H1 & On a given comment, the people who reply to it downvote it more often than other voters do. & Comment \\
+H2 & Across \emph{all} of $A$'s votes on $B$, replying to $B$ goes with having voted against $B$, more than for a random person present in the same article. & Pair of users (dyad) \\
+H3 & Replies across the two factions found by FAULTANA happen more than random mixing would produce \emph{and} are more negative. & Faction \\
+H4 & Early exposure to negativity (first 30 days) is associated with a higher risk of leaving. & User \\
+\bottomrule
+\end{tabularx}
+
+H1--H3 are \emph{associations}; H4 is a hazard association. None is a causal claim, and the thesis should not use causal language. \src{Hern\'an \& Robins 2020} gives the vocabulary for why.
+
+\section{Timeline}
+\begin{tabularx}{\textwidth}{@{}l Y@{}}
+\toprule
+Date & What happened \\
+\midrule
+2026-09-30 & Meeting 1. FAULTANA-style future work discarded. Task: replies $\times$ opposition $\times$ lifetime. \\
+2026-10-06 & Data downloaded (28\,GB, checksums verified), plan written, scripts 00--07 run. \\
+2026-10-16/19 & Null model discussed and approved; meeting 2 approved the method and results. Follow-ups: positive votes, understand H2, top 10\% longest-living users, study signed networks. \\
+2026-11-02 & Scripts 08--09 run (positive votes; long-lived users). Code review written. \\
+2026-11-03 & New analyses designed but \emph{on hold} until you have studied the methods; this book written. \\
+\bottomrule
+\end{tabularx}
+
+\section{What is finished and what is not}
+\begin{description}
+  \item[Finished.] Data preparation; reply network; H1--H4; multiverse of alternative specifications; positive-vote mirror analysis; long-lived users; code review.
+  \item[Designed, not run.] Period split, topic split, both directions of each pair, activity strata, uncertainty propagation of the pair relation, a thread-level null next to the article-level one, voter-level H1, a better definition of ``long-lived''. Chapter~\ref{ch:critique} explains each and why.
+  \item[A different experiment.] \emph{Bridging users} (people who reply across the fault line). You decided it should be its own experiment.
+  \item[Your tasks.] Study the methods (Chapter~\ref{ch:methods}); read the signed-network sources (Chapter~\ref{ch:sources}); review the two choices still tagged \emph{AI, not yet reviewed} (C17 and C18 in Section~\ref{sec:choices}).
+\end{description}

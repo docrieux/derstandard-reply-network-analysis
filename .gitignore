@@ -1,0 +1,7 @@
+data/*
+!data/.gitkeep
+__pycache__/
+.venv/
+*.aux
+# *.log not ignored: run.log and download.log are sources for verified facts (2026-11-21)
+notes/.obsidian/workspace*

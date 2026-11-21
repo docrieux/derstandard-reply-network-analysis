@@ -1,0 +1,65 @@
+\chapter{Four ideas you need first}\label{ch:primer}
+
+Every method in Chapter~\ref{ch:methods} is built from four ideas: comparing proportions, asking ``compared with what?'', measuring uncertainty by resampling, and handling people who have not left yet. Each section here is short and self-contained.
+
+\section{Proportions, odds and odds ratios}
+\begin{idea}
+An odds ratio compares two groups on a scale where 1 means no difference; it is not ``how many times more likely''.
+\end{idea}
+
+If 53.3\% of the votes by repliers are downvotes (H1), the \emph{probability} of a downvote is $p=0.533$ and the \emph{odds} are $p/(1-p) = 0.533/0.467 = 1.14$. For other voters $p=0.301$ and the odds are $0.43$. The \emph{odds ratio} from the pooled shares is $1.14/0.43\approx 2.65$; the headline $4.43$ is larger because it is computed comment by comment, not from pooled shares (Section~\ref{sec:h1}).
+
+Why use odds at all? Odds ratios behave symmetrically: the odds ratio for an \emph{upvote} is exactly $1/\text{OR}_{\text{down}}$ for the same table. That is why the positive-vote analysis gives $0.23=1/4.43$ and is not independent evidence. Probabilities do not have that property.
+
+\begin{pitfall}
+An OR of 4.4 does \emph{not} mean ``4.4 times as likely''. When the event is common (here about half), odds ratios exaggerate risk ratios. Always quote the shares beside the OR: 53\% versus 30\%. The risk ratio here is only $0.533/0.301\approx1.8$.
+\end{pitfall}
+
+\begin{tryit}
+Compute the odds and the OR for shares 20\% and 10\%. Then for 2\% and 1\%. What happens to the OR compared with the risk ratio when events become rare? (Answer in Appendix~\ref{app:exercises}.)
+\end{tryit}
+
+\section{Confounding, strata and ``compared with what?''}
+\begin{idea}
+A comparison is only meaningful if the two groups are alike in everything else; stratifying means comparing within groups that are alike.
+\end{idea}
+
+Controversial comments attract many votes, many downvotes and many replies. If we compared \emph{all} replier votes with \emph{all} non-replier votes, the repliers would look more negative simply because they cluster on controversial comments. The fix is to compare repliers with other voters \emph{on the same comment}. Each comment is a stratum, and we pool the within-comment comparisons. The tool is the Mantel--Haenszel estimator (Section~\ref{sec:h1}).
+
+This is the general pattern of the whole thesis: whenever you see a surprising number, ask what else differs between the groups, and whether a stratum, a null model or a landmark can remove that difference.
+
+\section{Uncertainty without formulas: the bootstrap}\label{sec:bootstrap}
+\begin{idea}
+To see how much a result would change with a different sample, re-compute it on many resamples and look at the spread.
+\end{idea}
+
+Imagine 1,000 users each contribute some edges. Draw 1,000 users \emph{with replacement}, so some appear twice and some not at all, and recompute the statistic. Repeat 200 times. The 2.5th and 97.5th percentiles of the 200 results form a 95\% interval. We resample \emph{users} rather than edges because one user's edges are related (a habitual downvoter produces many negative edges); resampling edges would make the interval far too narrow.
+
+A fast equivalent used in the code: instead of actually drawing a sample, give each user a random integer weight from a Poisson(1) distribution (on average one, sometimes zero, sometimes two or more) and recompute weighted statistics. It avoids copying data. \src{Efron 1979} is the classic source; any modern text covers it.
+
+\begin{pitfall}
+With millions of observations, every difference is ``statistically significant''. That is why the thesis reports effect sizes and intervals, not $p$-values \src{Wasserstein \& Lazar 2016; Lin et al.\ 2013}. A tiny interval says the estimate is precise; it does not say the effect is large or that the design is right.
+\end{pitfall}
+
+\section{Survival and censoring}\label{sec:survival}
+\begin{idea}
+Lifetimes of people who are still active are incomplete, not missing; survival analysis uses them for exactly as long as they are observed.
+\end{idea}
+
+Suppose we want the share of newcomers who are still active after two years. A user who joined three months before the data end has only been observed for three months. Dropping them biases the answer toward early cohorts; treating their last activity as ``the time they left'' biases it the other way. Kaplan--Meier estimation handles it: at each time at which someone leaves, count how many people were still \emph{at risk} (observed and not yet gone), and multiply the survival probability by $(1-\text{leavers}/\text{at risk})$. Users who are censored contribute to the risk set until their censoring time and then drop out, without being counted as leavers.
+
+The Cox proportional-hazards model asks how a covariate shifts the \emph{hazard}, the instantaneous rate of leaving. A hazard ratio of 1.11 per standard deviation means that a user who is one standard deviation higher on the covariate leaves at a rate 11\% higher at any moment, other things equal. It does not say the user leaves 11\% sooner or that 11\% more leave.
+
+Two further ideas are needed for H4.
+\begin{itemize}
+  \item \textbf{Immortal-time bias.} If a covariate is measured over the first 30 days, a user must \emph{survive} those 30 days to have a value. Counting survival from day 0 would give such users free ``immortal'' time. The \emph{landmark} design starts the clock at day 30 and includes only users still active then \src{Suissa 2008; Anderson et al.\ 1983}.
+  \item \textbf{Stratified baselines.} Newer cohorts leave faster. Rather than assume one baseline for everyone, the Cox model gets a separate baseline for each entry cohort (the \emph{strata}) and one common set of coefficients.
+\end{itemize}
+
+\section{Signed networks in two paragraphs}
+A \emph{signed network} has edges that are positive (liking, agreement) or negative (disliking, opposition). Heider's balance theory says that triangles tend to be ``balanced'': a friend of my friend is my friend, an enemy of my friend is my enemy. Cartwright and Harary showed that a fully balanced network splits into at most two camps with only positive edges inside and only negative edges between \src{Heider 1946; Cartwright \& Harary 1956}.
+
+Real networks are not perfectly balanced, so one looks for the two-camp split that violates balance least (fewest ``frustrated'' edges). FAULTANA does this on the DerStandard vote network and measures how antagonistic interactions are and how well they follow the split \src{Fraxanet et al.\ 2024}. We borrow its two camps for H3 and its way of defining a signed edge for H2.
+
+\section{What a causal claim would need}
+Throughout this book, ``associated with'' means ``seen together in these data''. A causal version of H4 (``being downvoted \emph{makes} people leave'') would need the comparison group to be exchangeable with the treated group apart from the exposure, which is false here: users who write provocative comments are both downvoted more and different in other ways. Section~\ref{sec:longlived} gives a concrete example of how interpretation can go wrong.

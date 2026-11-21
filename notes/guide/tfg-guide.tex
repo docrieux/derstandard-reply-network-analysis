@@ -1,0 +1,422 @@
+% Guide to the current state of the TFG (DerStandard: replies, stance and user lifetime)
+% Build: pdflatex tfg-guide.tex (twice, for the table of contents)
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{booktabs,tabularx,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\setlist{itemsep=2pt,topsep=4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\renewcommand{\arraystretch}{1.15}
+
+\usepackage{url}
+\urlstyle{tt}
+\newcommand{\file}[1]{\path{#1}}
+\newcommand{\todo}[1]{\textcolor{red!70!black}{[#1]}}
+\newcommand{\readref}[1]{\textcolor{blue!50!black}{\textbf{Read:}} #1}
+\newcommand{\status}[1]{\textsc{\small #1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{\textbf{A guide through my TFG}\\[2pt]\large Who replies to whom, are they opposed, and how long do they stay?\\ Reply structure $\times$ vote-based stance $\times$ user lifetime on DerStandard.at}
+\author{Working guide, state of 2026-11-02}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section*{How to use this guide}
+\addcontentsline{toc}{section}{How to use this guide}
+This is a map, not a textbook. It says \emph{what} was done, \emph{why}, \emph{where it lives in the repository} and \emph{what to read} to understand each piece. It deliberately contains no statistical theory: wherever a method appears, a \readref{} line points to a source. Citations like [\ref{ref:mh}] refer to the reading list in Section~\ref{sec:reading}.
+
+\textbf{Suggested order.} (1) Sections~\ref{sec:context}--\ref{sec:hyp} give the story. (2) Section~\ref{sec:choices} lists every decision that someone can challenge in a defence. (3) Sections~\ref{sec:process}--\ref{sec:methods} explain how the work was done and what each method answers. (4) Sections~\ref{sec:results}--\ref{sec:conclusions} give numbers and the claims they support. (5) Section~\ref{sec:selftest} is a self-test; if you cannot answer a question, go back to the section it names.
+
+\textbf{Status tags.} The repository tags each decision as \status{[me]}, \status{[AI, reviewed]} or \status{[AI, not yet reviewed]}. The first analysis session (2026-10-06) was largely carried out with an AI assistant (see \file{notes/method/AI-USE.md}). The aim of this guide is that every item below becomes something you can explain from understanding.
+
+\textbf{Caveat on the references.} The bibliographic details in Section~\ref{sec:reading} were written from memory and are not checked online. Verify each DOI/page range before it enters the written thesis. PDFs already in \file{notes/papers/} are marked as such.
+
+% ------------------------------------------------------------------
+\section{Context and aim}\label{sec:context}
+\subsection{The project in one paragraph}
+The TFG is supervised by Andreas Kaltenbrunner (UPF) and is built on the DerStandard.at dataset created by his group (Fraxanet, G\'omez, Kaltenbrunner, Pellert): ten years (2013--2022) of threaded comments and signed (up/down) votes from an Austrian newspaper forum. The first assigned task (meeting 2026-09-30) was: \emph{analyse who replies to whom and whether their positions are opposed, complemented with an analysis of users' lifetime.} The second meeting (2026-10-19) approved the method and results and asked for follow-ups; the third meeting is 2026-11-02.
+
+\subsection{Timeline}
+\begin{tabularx}{\textwidth}{@{}l Y@{}}
+\toprule
+Date & What happened \\
+\midrule
+2026-09-30 & Meeting 1: ideation. FAULTANA future work discarded (already tested without interesting results). Task set: replies $\times$ opposition $\times$ lifetime. Biweekly meetings. \\
+2026-10-06 & Dataset downloaded (28\,GB, MD5-verified), plan written, scripts 00--07 run, results note produced (largely AI-executed). \\
+2026-10-16/19 & Null model approved; meeting 2: method and results approved. Follow-ups: positive votes, understand H2 and the methods, top 10\% longest-living users, study signed networks. \\
+2026-11-02 & Scripts 08--09 run (positive votes; longest-living users). Meeting 3. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Where this sits in the literature}
+\begin{itemize}
+  \item \textbf{Signed networks and structural balance} (Heider; Cartwright \& Harary; Leskovec et al.). Edges are positive or negative; the question is how the sign structure organises the group. \readref{[\ref{ref:heider}], [\ref{ref:cartwright}], [\ref{ref:leskovec}], and the signed-networks chapter of [\ref{ref:easley}].}
+  \item \textbf{FAULTANA} (Fraxanet et al., 2024): detects the antagonism/alignment fault line in a signed vote network of this same forum, giving the two factions used in H3. Local PDF: \file{Fraxanet2024_faultana-antagonism-alignment.pdf} plus its SI. \readref{[\ref{ref:faultana}].}
+  \item \textbf{The dataset paper} (Fraxanet et al., 2026): what each file is and its known inconsistencies. Local PDF \file{Fraxanet2025_derstandard-dataset.pdf}. \readref{[\ref{ref:dataset}].}
+  \item \textbf{Prior group work on replies and votes}: Lan Ceqin (2026), reciprocity of replies and votes and new-user shares (local PDF \file{LanCeqin2026_reciprocity-derstandard-thesis.pdf}). This TFG's novelty claim is the \emph{cross} of reply structure $\times$ stance $\times$ lifetime, which neither FAULTANA nor that thesis studied.
+  \item \textbf{User lifecycle and churn in online communities}: Danescu-Niculescu-Mizil et al.\ (2013), Cheng et al.\ (2015), Kraut \& Resnick (2012). \readref{[\ref{ref:dnm}], [\ref{ref:cheng}], [\ref{ref:kraut}].}
+  \item \textbf{Discussion-thread structure}: G\'omez et al.\ (2008, 2013), from the supervisor's group. \readref{[\ref{ref:gomez08}], [\ref{ref:gomez13}].}
+\end{itemize}
+
+% ------------------------------------------------------------------
+\section{The data}\label{sec:data}
+\subsection{What the dataset contains}
+DerStandard.at, 2013-01-01 to 2022-12-31 (data collected 2021-06 to 2022-12). Tabular files are TSV with \texttt{NA} for missing values, hashed 16-hex user and comment IDs and unix timestamps.
+
+\begin{tabularx}{\textwidth}{@{}l r Y@{}}
+\toprule
+Table & Size (raw) & Used for \\
+\midrule
+Comments & 75.6\,M rows & Author, parent, thread depth, article, timestamp. Reply edges. \\
+Votes & 412\,M rows & Voter, comment author, sign ($\pm1$), month only. Stance. \\
+Users & 248\,k users & First/last comment and vote. Lifetime. \\
+Articles & 587\,k & Topic. Heterogeneity. \\
+Summary files & --- & \file{faction_users} (FAULTANA factions, 14.8\,k users: 9\,278 in faction 1, 5\,539 in faction 2); \file{inconsistent_comment_metadata}. \\
+Embeddings & 508\,GB & \textbf{Not downloaded} (see choice C1). \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Properties that shape every analysis}
+\begin{enumerate}
+  \item \textbf{There is no comment text.} Stance must be inferred from votes.
+  \item \textbf{Votes have no timestamp}, only the month of the file. We cannot tell whether a downvote preceded the reply; all stance results are associations.
+  \item \textbf{Cleaning}: 259\,521 exact duplicate comments (0.34\%); 27.1\,M votes with a deleted voter; reply edges lost to inconsistent metadata (0.6\%), deleted authors (14.9\%) and self-replies (1.4\%). Final: 75.4\,M unique comments, 383.9\,M usable votes, \textbf{44\,350\,672 reply edges}. Documented in \file{notes/dataset/data-treatment.md}.
+  \item \textbf{The FAULTANA factions are survivors by construction}: only users who voted every year 2014--2021 were labelled.
+  \item \textbf{Volume change in 2022}: comments and votes per month fall by about 45\% from February 2022 while active users stay flat. Unexplained; to ask Andreas/Emma.
+\end{enumerate}
+\readref{[\ref{ref:dataset}] for the files and inconsistencies; the local \file{Codebook.md} for field meanings.}
+
+% ------------------------------------------------------------------
+\section{Research questions and hypotheses}\label{sec:hyp}
+\textbf{Main question.} Who replies to whom, are they in opposed positions, and how is this related to how long users stay in the forum?
+
+Because there is no text, ``opposed position'' means \emph{vote-based disapproval} at three nested levels, from local to global.
+
+\begin{tabularx}{\textwidth}{@{}l l Y Y@{}}
+\toprule
+ & Level & Statement & Test \\
+\midrule
+H1 & Comment & Voters who replied to comment $c$ downvote $c$ more often than voters who did not reply. & Within-comment comparison; Mantel--Haenszel pooled odds ratio over 8.1\,M comments. \\
+H2 & User pair & A replies to users toward whom A's overall vote balance is more negative than toward a co-present null target. & Beta-posterior edge sign, real vs null, bootstrap clustered by replier. \\
+H3 & Faction & The share of cross-faction replies exceeds random mixing and the null; cross-faction replies are more hostile. & Shares vs two baselines; stance by faction relation. \\
+H4 & Lifetime & New commenters who receive more downvotes and hostile replies in their first 30 days leave sooner. & Landmark Cox proportional hazards, stratified by cohort. \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Follow-up questions (meeting 2).} (i) Do the results also hold for \emph{positive} votes? (ii) What distinguishes the longest-living users (top 10\%)? Both have been run (Section~\ref{sec:results}). Still open: signed networks as background reading, and the optional ideas listed in Section~\ref{sec:next}.
+
+\textbf{Important framing.} H1--H3 are associations on observational data; H4 is a hazard association. None is a causal claim. \readref{[\ref{ref:hernan}] for the vocabulary of causal vs associational claims.}
+
+% ------------------------------------------------------------------
+\section{Methodological choices and why}\label{sec:choices}
+Each row is a decision that can be challenged. ``Where'' gives the repository location.
+
+\begin{longtable}{@{}p{0.04\textwidth} p{0.19\textwidth} p{0.33\textwidth} p{0.28\textwidth}@{}}
+\toprule
+\# & Choice & Reason & Where / reading \\
+\midrule
+\endhead
+C1 & Do not download the 508\,GB embeddings & Embeddings give semantic similarity, not agreement; the signed vote network measures opposition directly at full scale. & \file{notes/dataset/NOTES.md} \\
+C2 & Stance from votes at three levels & Text is absent; three levels answer different questions (this comment, this person, this group) and can disagree. & \file{PLAN.md}, \file{EXPLICACION.md} \S3 \\
+C3 & Reply = a message whose \texttt{parent\_id} is B's comment and whose author is A & Only the thread structure certifies a reply; mentions in free text are ignored (accepted loss). & \file{data-treatment.md}, D15 \\
+C4 & Remove duplicates, deleted voters, self-replies, inconsistent records & Duplicates double-count edges and votes and break independence. & \file{data-treatment.md}, D7 \\
+C5 & \textbf{Co-present null model}: replace B by the author of a uniformly random \emph{earlier} comment in the same article & Keeps article, time and exposure fixed; only the choice of target changes. Without it ``31\% negative relations'' has no reference. & \file{02_null_pairs.py}; \file{NOTES.md} 4 \\
+C6 & Stratify by comment (Mantel--Haenszel) in H1 & Compares voters on the \emph{same} comment, so a controversial comment does not inflate the effect. \readref{[\ref{ref:mh}], [\ref{ref:rbg}], [\ref{ref:agresti}].} & \file{04_h1_comment_level.py} \\
+C7 & Beta posterior for the pair relation, prior $(\alpha,\beta)=(1,2)$, edge negative if $E[p]<0.4$, positive if $>0.6$ & Inherited from FAULTANA so that relations are comparable. The prior is mildly negative; the multiverse tests alternatives. \readref{[\ref{ref:faultana}], [\ref{ref:bda}].} & \file{05_h2_h3_dyad_faction.py} \\
+C8 & Exclude A's vote on the specific comment in H2 & Otherwise H2 re-counts H1. & \file{03_dyads.py} \\
+C9 & Per-edge metrics (negative-edge share, mean $E[p]$) instead of the pooled downvote share & The pooled share is dominated by a few mega-dyads with thousands of mutual upvotes (median 1--2 votes per pair, mean $\sim$110). & \file{NOTES.md} 7 \\
+C10 & Bootstrap clustered by replier (Poisson weights) & Edges of the same replier are not independent. \readref{[\ref{ref:efron}].} & \file{05_h2_h3_*.py} \\
+C11 & Lifetime = last $-$ first activity (comments and votes); right-censored if last activity $\ge$ 2022-07-01; left-censored if first activity $<$ 2013-07-01 & The window ends at 2022-12; users still active may not have left. Left-censored users may predate the data. \readref{[\ref{ref:km}], [\ref{ref:kleinbaum}].} & \file{06_lifetime.py} \\
+C12 & \textbf{Landmark design} at day 30 in H4 & Exposures are measured in the first 30 days; counting survival from day 0 would credit users with ``surviving'' while exposures accumulate (immortal-time bias). \readref{[\ref{ref:suissa}], [\ref{ref:anderson}].} & \file{h4.py}, \file{06_lifetime.py} \\
+C13 & Cox model stratified by entry cohort & Cohorts differ in baseline hazard (newer cohorts leave faster); stratifying avoids assuming one baseline. \readref{[\ref{ref:cox}], [\ref{ref:kleinbaum}].} & \file{06_lifetime.py} \\
+C14 & Shrink early shares toward the \emph{population} rate (pseudo-count $M=2$) & A first version used a Beta(1,1) prior, putting users with no replies at 0.5, above the real base rate. ``No data'' looked hostile and the HR changed sign. Fixed. & \file{NOTES.md} 8 \\
+C15 & Multiverse / specification curves for H2 (24 specs) and H4 (18 specs) & Shows how much the headline depends on arbitrary choices. \readref{[\ref{ref:steegen}], [\ref{ref:simonsohn}] (both local PDFs).} & \file{07_multiverse.py} \\
+C16 & Report effect sizes and CIs, not p-values & With $N$ in the millions everything is ``significant''. \readref{[\ref{ref:wasserstein}], [\ref{ref:lin}].} & \file{RESULTS.md} \\
+C17 & ``Long-lived'' = top 10\% of lifetime \emph{within entry cohort} (preferred) & Top 10\% overall mostly selects early cohorts, which had more time. Also reported: top 10\% overall, $>2$ y, $>3$ y. \status{[AI, not yet reviewed]} & \file{09_top_decile_lifetime.py} \\
+C18 & Positive edge = $E[p]>0.6$, mirror of the negative edge & Same prior, thresholds and null; makes positive and negative results comparable. \status{[AI, not yet reviewed]} & \file{08_positive_votes.py} \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------------
+\section{Process and reproducibility}\label{sec:process}
+\subsection{Repository layout}
+One experiment = one folder with the same name in \file{notes/experiments/} (documentation and results) and in \file{code/experiments/} (scripts). The project map is \file{INDEX.md}. The notes folder is an Obsidian vault. Raw and derived data (about 42\,GB) live in \file{data/derstandard/}, outside git.
+
+\subsection{Pipeline}
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth} p{0.27\textwidth} Y r@{}}
+\toprule
+Script & Step & Output & Time \\
+\midrule
+\file{00_to_parquet} & TSV $\to$ Parquet, typed IDs, \texttt{NA}$\to$NULL, votes cleaned & \file{comments, votes, votes_clean, users, articles, factions}.parquet & $\sim$6.5\,min \\
+\file{01_reply_edges} & Reply edges with tenure of A and B & \file{reply_edges}.parquet & 20\,s \\
+\file{02_null_pairs} & Co-present null target per reply (hash-based, fixed seed) & \file{null_edges}.parquet & 1\,min \\
+\file{03_dyads} & Directed vote totals for real and null pairs; per-edge stance & \file{dyads}, \file{edges_stance}.parquet & 1\,min \\
+\file{04_h1_comment_level} & H1: Mantel--Haenszel, bootstrap, year/depth/topic & CSV + figure & 35\,s \\
+\file{05_h2_h3_dyad_faction} & H2, H3, faction projection, reply-back & CSVs + figure & 30\,s \\
+\file{06_lifetime} & Lifetime, Kaplan--Meier, tenure table, H4 Cox & CSVs + figures & 1--2\,min \\
+\file{07_multiverse} & Specification curves for H2 and H4 & CSVs + figure & 3\,min \\
+\file{08_positive_votes} & Positive-vote mirror of H1--H4 & \file{08_*} CSVs + figure & 3.5\,min \\
+\file{09_top_decile_lifetime} & Longest-living users & \file{09_*} CSVs + figure & $<$\,10\,s \\
+\bottomrule
+\end{tabularx}
+\smallskip
+Full re-run from raw data takes roughly 15--20 minutes on the project machine (32\,GB RAM). Every step logs row counts and timings to \file{results/run.log}. Helpers: \file{common.py} (paths, censoring constants, logging), \file{h4.py} (the H4 landmark feature builder, used by 06, 07, 08, 09), \file{plotstyle.py}.
+
+\subsection{Tools}
+DuckDB for out-of-core SQL over Parquet (the 400\,M-row joins do not fit in pandas), then pandas/NumPy/SciPy/statsmodels for statistics, \texttt{lifelines} for survival models, matplotlib for figures; \texttt{uv} manages the environment. \readref{[\ref{ref:duckdb}], [\ref{ref:lifelines}].}
+
+\subsection{Documentation habits}
+Every methodological decision goes into \file{NOTES.md} of the experiment with a status tag; cleaning decisions go into \file{notes/dataset/data-treatment.md}; every number in a result note is traceable to a CSV in \file{results/}. Documents for understanding: \file{EXPLICACION.md} (long), \file{EXPLICACION-RESUMEN.md} (7-minute version), \file{PREGUNTAS.md} (practice questions).
+
+% ------------------------------------------------------------------
+\section{Methods in plain words}\label{sec:methods}
+For each method: the question it answers in this project, one-sentence intuition, a common pitfall, and what to read.
+
+\begin{description}[leftmargin=0pt,style=nextline]
+\item[Odds ratio and Mantel--Haenszel (H1).]
+Question: do repliers downvote more than other voters \emph{on the same comment}? The odds ratio compares odds of a downvote between the two groups; Mantel--Haenszel pools one $2\times2$ table per comment into a single ratio, so differences between comments cancel out. Pitfall: an OR of 4.4 is \emph{not} ``4.4 times more likely''; quote the percentages (53\% vs 30\%) beside it. For a single table, the upvote OR is exactly the inverse of the downvote OR. \readref{[\ref{ref:mh}], [\ref{ref:rbg}] (the variance used), [\ref{ref:agresti}].}
+
+\item[Null model (H2, H3).]
+Question: what would we see if A had replied to somebody who was merely present? Intuition: a counterfactual draw that keeps article, time and exposure and changes only who is chosen. Pitfall: the null target can coincide with the real one (4\% of cases), which is legitimate. \readref{Section on permutation/randomisation baselines in [\ref{ref:wasserman_net}]; see also how FAULTANA builds its baselines [\ref{ref:faultana}].}
+
+\item[Beta posterior for a pair (H2).]
+Question: is A \emph{in general} for or against B? The probability that A votes positively on B is given a Beta prior and updated by counting A's votes on B; the posterior mean $E[p]$ and its variance define the edge sign. Pitfall: with one vote, the prior dominates (hence the ``$\ge5$ votes'' variant). \readref{[\ref{ref:bda}] (beta--binomial model); [\ref{ref:faultana}] for the prior and thresholds used.}
+
+\item[Bootstrap clustered by replier.]
+Question: how uncertain is the difference real vs null when a replier contributes many correlated edges? Intuition: resample users, not edges. Poisson(1) weights are a fast equivalent. \readref{[\ref{ref:efron}].}
+
+\item[Kaplan--Meier and censoring (lifetime).]
+Question: what fraction of users is still active after $t$ years, counting users who have not yet left? \readref{[\ref{ref:km}], [\ref{ref:kleinbaum}].}
+
+\item[Cox proportional hazards, landmark, stratification (H4).]
+Question: does early hostility change the instantaneous risk of leaving? The hazard ratio is per standard deviation of the exposure. The landmark at day 30 avoids immortal-time bias; stratifying by cohort lets each cohort have its own baseline. The proportional-hazards assumption is checked with Schoenfeld residuals. Pitfall: HR $>1$ means leaving \emph{sooner}. \readref{[\ref{ref:cox}], [\ref{ref:schoenfeld}], [\ref{ref:grambsch}], [\ref{ref:suissa}], [\ref{ref:anderson}].}
+
+\item[Shrinkage of user-level shares (H4).]
+Question: how to compute ``share of hostile replies'' for a user with 0, 1 or 2 replies? Intuition: pull small samples toward the population rate with a pseudo-count. See choice C14 for the bug this fixed. \readref{Empirical-Bayes sections of [\ref{ref:bda}].}
+
+\item[Multiverse / specification curve.]
+Question: do conclusions survive reasonable alternative analytic choices? Re-run with every defensible combination and plot the spread. \readref{[\ref{ref:steegen}], [\ref{ref:simonsohn}] (local PDFs, with the latter's SI).}
+
+\item[Logistic regression with cohort fixed effects (longest-living users).]
+Question: does early negativity predict being in the long-lived group, once the cohort is controlled for? \readref{[\ref{ref:agresti}].}
+
+\item[Signed networks and structural balance (background for H3).]
+Intuition: friends of friends should be friends; enemies of enemies friends; a balanced network splits into two opposed camps, which is the idea behind the two factions. \readref{[\ref{ref:heider}], [\ref{ref:cartwright}], [\ref{ref:leskovec}], [\ref{ref:easley}].}
+\end{description}
+
+% ------------------------------------------------------------------
+\section{Results}\label{sec:results}
+All numbers below are from \file{RESULTS.md} (sections 3--4 and the 2026-11-02 update in section 8) and the CSV tables in \file{results/}.
+
+\subsection{Objective 1: who replies to whom, and are they opposed?}
+\begin{tabularx}{\textwidth}{@{}l Y@{}}
+\toprule
+ & Result \\
+\midrule
+H1 & On the same comment, repliers downvote 53.3\% vs 30.1\% for other voters; $\mathrm{OR}_{MH}=4.43$ [4.42, 4.44] over 8\,117\,960 comments. Stable by year (4.1--4.7) and topic (3.5--4.9). Escalates with thread depth: OR 3.5 at top level $\to$ 5.7 $\to$ 6.9 $\to$ 7.8 $\to$ 8.2 $\to$ 9.0 at depth $\ge5$. \\
+H2 & Negative relations (pairs with $\ge5$ votes, $E[p]<0.4$): 31.4\% for the replied-to user vs 18.1\% for the null, a difference of +13.3 pp [12.6, 14.0] (votes on the replied comment excluded). Strict FAULTANA edges: 9.4\% vs 3.8\%. Across 24 specifications: +11.7 to +20.6 pp, positive in 24/24. \\
+H3 & Among 11.3\,M replies with both users labelled: cross-faction 26.0\% observed vs 23.2\% null vs 46.8\% under random mixing. Exposure is strongly segregated; within it, a small excess of out-group targets, coming from the majority faction (16.7\% vs 13.7\%). Cross-faction replies are far more hostile: replier downvoted the parent in 64.6\% vs 37.0\% for same-faction replies. \\
+Reply-back & P(B replies to A) is 31.8\% if A downvoted B's comment, 29.8\% if A did not vote, 16.6\% if A upvoted. \\
+Tenure & Veterans (3+ y) downvote newcomers ($<30$ d) in 68\% of replies, and other veterans in 48\%. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Objective 2: user lifetime and H4}
+\begin{tabularx}{\textwidth}{@{}l Y@{}}
+\toprule
+ & Result \\
+\midrule
+Descriptives & 247\,863 users (211\,108 commenters). 26.7\% active for less than a day, 37.9\% less than 30 days, 20.3\% wrote one comment; 30.3\% right-censored, 16.6\% left-censored. \\
+Cohorts & Median lifetime of commenters (Kaplan--Meier): 1.36 y (2014), 0.81 (2016), 0.41 (2018), 0.39 (2020). One-year survival 53\% $\to$ 41\%. \\
+H4 & 98\,670 new commenters (59\% leave before 2022-07). Hazard ratio of leaving per SD of first-30-day exposure: downvote share received 1.11 [1.10, 1.12]; hostile replies received 1.06 [1.05, 1.07]; hostile replies written 1.04; got any reply 0.95; log early comments 1.23. Proportional hazards hold; CI excludes 1 in 18/18 specifications for the three hostility measures. \\
+\bottomrule
+\end{tabularx}
+Note: very active new accounts (more than 30 comments in the first month) leave much faster (71\% events); probably bursts, bans or sockpuppets. Not separated yet.
+
+\subsection{Follow-ups from meeting 2 (run on 2026-11-02, \status{[AI, not yet reviewed]})}
+\textbf{Positive votes.} Mirror image of the negative results: repliers upvote the comment they answer less (46.7\% vs 69.9\%; $\mathrm{OR}_{up}=0.23=1/4.43$, not independent evidence). Replied-to users have a lower positive-edge share than the null (68.6\% vs 81.9\%, $-13.3$ pp; $-20.6$ to $-11.7$ pp across 24 specifications, negative in all). Same-faction replies upvote the parent in 63.0\% of cases, cross-faction in 35.4\%. For H4, early upvote share received is protective (HR 0.87 per SD), but friendly replies add nothing once hostility is controlled for (HR $\approx1.00$). It is the \emph{absence of hostility}, not the presence of friendliness, that matters.
+
+\textbf{Longest-living users.} Population: the H4 landmark population (98\,670 users). Top 10\% within cohort, versus the rest, in the first 30 days: downvote share received 20.4\% vs 30.0\%; hostile replies received 11.8\% vs 16.9\%; hostile replies written 12.2\% vs 17.1\%; same early activity (median 2 comments) and same chance of getting a reply (62.6\% vs 62.8\%). Odds of being long-lived per SD: downvote share received 0.87 [0.85, 0.89], hostile replies received 0.94, written 0.96. Inside the group early negativity barely relates to how long they stay (Spearman $\rho$ between 0.03 and 0.07). Over their whole life, at every tenure they downvote the parent less (47--50\% vs 52--54\%) and receive fewer hostile replies. The ``>2 y'', ``>3 y'' and ``top 10\% overall'' definitions give the same direction.
+
+% ------------------------------------------------------------------
+\section{Conclusions, limits and what you can claim}\label{sec:conclusions}
+\subsection{Conclusions}
+\begin{enumerate}
+  \item \textbf{Replies are mostly an antagonistic channel.} People reply to comments they downvote and to users they are generally against, more than to other users present in the same discussion (H1, H2; positive-vote results are the mirror image).
+  \item \textbf{Conversations escalate}: antagonism grows with thread depth and being downvoted roughly doubles the chance of an answer.
+  \item \textbf{The fault line shapes who meets whom}: factions mostly discuss separately; when they meet, replies are hostile.
+  \item \textbf{Most newcomers leave quickly, and later cohorts leave faster.}
+  \item \textbf{Early hostility is associated with leaving sooner}, robust across specifications. Long-lived users were treated and behaved less negatively from the start.
+\end{enumerate}
+
+\subsection{What you can and cannot claim}
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\toprule
+Can claim & Cannot claim \\
+\midrule
+Repliers disapprove (by vote) of what they answer much more than other voters on the same comment. & That disagreement \emph{causes} replying: votes have no timestamp, so the order is unknown. \\
+Early hostility is associated with a higher hazard of leaving, robustly to specification. & That hostility \emph{causes} leaving (reverse causation, unobserved bans), or that veterans do ``gatekeeping'' (compatible, untested). \\
+Factions mostly meet within their own faction. & That faction hostility is independent evidence: the partition was built from the same votes (partly circular). \\
+Long-lived users start less negative. & That the top 10\% are the top 10\% of the \emph{process}: lifetime is right-censored and the group is selected on survival. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Limitations}
+\begin{itemize}
+  \item ``Position'' is vote-based disapproval, not measured ideology; whether a vote is a valid proxy of opposition is an open question.
+  \item Votes carry no timestamp; everything in Objective 1 is an association.
+  \item Faction labels cover 14.8\,k survivors; projecting them to everyone was weak (AUC 0.63) and is not used for conclusions.
+  \item H4 cannot distinguish bans from voluntary exit; the 2022 volume drop is unexplained.
+  \item With millions of observations, p-values are uninformative; the evidence is effect sizes and robustness.
+  \item Much of the pipeline was AI-written; items tagged \status{[AI, not yet reviewed]} still need your review.
+\end{itemize}
+
+% ------------------------------------------------------------------
+\section{Open items and next steps}\label{sec:next}
+\subsection{Pending from meeting 2}
+\begin{itemize}[label=$\square$]
+  \item Study the hypothesis tests, methods and results until you can explain them (use Sections~\ref{sec:choices}, \ref{sec:methods} and \ref{sec:selftest}).
+  \item Start reading about signed networks, and the group's papers on how people reply to each other (the latter are not in \file{notes/papers/} yet).
+  \item Review the decisions tagged \status{[AI, not yet reviewed]} (C17, C18).
+  \item Ask the TFG coordinator about cluster access (deferred: not needed yet).
+\end{itemize}
+
+\subsection{Optional directions raised in the notes}
+\begin{itemize}
+  \item Is a vote-based position a valid proxy for opposition? Is the co-present null the right baseline?
+  \item How to handle the circularity of faction hostility (factions built from the same votes).
+  \item What causes the 2022 volume drop (collection vs platform).
+  \item Separating bans from voluntary exits (heavy-burst accounts).
+  \item Next direction: \emph{bridging users} (reply across factions without hostility; do they live longer?), \emph{escalation as a sequence} ($P(\text{hostile at depth }k+1\mid\text{hostile at depth }k)$), or topic-level H2/H3.
+\end{itemize}
+
+% ------------------------------------------------------------------
+\section{Self-test}\label{sec:selftest}
+If you cannot answer one of these in two minutes, go to the section in brackets.
+\begin{enumerate}
+  \item Why can't ``position'' be measured from text here, and what replaces it? [\ref{sec:data}, C2]
+  \item What exactly is a reply edge, and what is lost with that definition? [C3]
+  \item Why compare with a co-present null instead of with random users? [C5]
+  \item What does stratifying by comment buy you in H1? Why is OR 4.4 not ``4.4 times more likely''? [C6, \ref{sec:methods}]
+  \item Why exclude A's vote on the specific comment in H2? [C8]
+  \item Why per-edge metrics instead of the pooled downvote share? [C9]
+  \item What is right-censoring and what does it do to the top 10\% of lifetimes? [C11, \ref{sec:results}]
+  \item What is immortal-time bias and how does a landmark at day 30 avoid it? [C12]
+  \item What does ``HR 1.11 per SD'' mean, and what does it not mean? [C13, \ref{sec:conclusions}]
+  \item What bug did the first version of the shrinkage have, and how did you notice? [C14]
+  \item What does the multiverse show, and what would make you worry? [C15]
+  \item Why is faction hostility partly circular? [\ref{sec:conclusions}]
+  \item Why are the positive-vote results ``the mirror image'' and not new evidence at the comment level? [\ref{sec:results}]
+  \item Why define the long-lived group within cohort? [C17]
+\end{enumerate}
+
+% ------------------------------------------------------------------
+\section{Reading list}\label{sec:reading}
+\textbf{Priority 1} (read first, in this order): [\ref{ref:dataset}], [\ref{ref:faultana}], [\ref{ref:steegen}], [\ref{ref:simonsohn}], [\ref{ref:heider}]/[\ref{ref:cartwright}], then one survival text [\ref{ref:kleinbaum}] and one categorical-data text [\ref{ref:agresti}].
+
+\textbf{Local PDFs in \file{notes/papers/}} (not all checked here): Fraxanet 2024 (+SI), Fraxanet 2025 dataset, Lan Ceqin 2026 thesis, Steegen 2016, Simonsohn 2020 (+SI), Cartwright \& Harary 1956, Heider 1946. Also present: D'Ignazi 2025 (ranking and polarization) and Amarasinghe 2026 (misinformation prevalence and uncertainty); the notes do not link them to this analysis.
+
+\subsection*{This group and this data}
+\begin{enumerate}[label={[\arabic*]},ref=\arabic*,series=refs]
+  \item\label{ref:dataset} Fraxanet, E., G\'omez, V., Kaltenbrunner, A., Pellert, M. (2026). \emph{A Decade of News Forum Interactions: Threaded Conversations, Signed Votes, and Topical Tags.} Scientific Data. doi:10.1038/s41597-026-07267-3. Dataset: doi:10.82201/RVQGUG.
+  \item\label{ref:faultana} Fraxanet, E., Pellert, M., Schweighofer, S., G\'omez, V., Garcia, D. (2024). Unpacking polarization: Antagonism and alignment in signed networks of online interaction. \emph{PNAS Nexus}. (Local PDF; verify volume and pages.)
+  \item\label{ref:gomez08} G\'omez, V., Kaltenbrunner, A., L\'opez, V. (2008). Statistical analysis of the social network and discussion threads in Slashdot. \emph{Proc. WWW}.
+  \item\label{ref:gomez13} G\'omez, V., Kappen, H. J., Litvak, N., Kaltenbrunner, A. (2013). A likelihood-based framework for the analysis of discussion threads. \emph{World Wide Web} 16.
+\end{enumerate}
+
+\subsection*{Signed networks and balance}
+\begin{enumerate}[label={[\arabic*]},ref=\arabic*,resume=refs]
+  \item\label{ref:heider} Heider, F. (1946). Attitudes and cognitive organization. \emph{Journal of Psychology} 21, 107--112.
+  \item\label{ref:cartwright} Cartwright, D., Harary, F. (1956). Structural balance: a generalization of Heider's theory. \emph{Psychological Review} 63(5), 277--293.
+  \item\label{ref:leskovec} Leskovec, J., Huttenlocher, D., Kleinberg, J. (2010). Signed networks in social media. \emph{Proc. CHI}; and Predicting positive and negative links in online social networks. \emph{Proc. WWW}.
+  \item\label{ref:easley} Easley, D., Kleinberg, J. (2010). \emph{Networks, Crowds, and Markets.} Cambridge University Press. (Chapter on positive and negative relationships; freely available online from the authors.)
+  \item\label{ref:wasserman_net} Wasserman, S., Faust, K. (1994). \emph{Social Network Analysis: Methods and Applications.} Cambridge University Press.
+\end{enumerate}
+
+\subsection*{Statistics: stratified tables, resampling, Bayesian shrinkage}
+\begin{enumerate}[label={[\arabic*]},ref=\arabic*,resume=refs]
+  \item\label{ref:mh} Mantel, N., Haenszel, W. (1959). Statistical aspects of the analysis of data from retrospective studies of disease. \emph{J. National Cancer Institute} 22(4), 719--748.
+  \item\label{ref:rbg} Robins, J., Breslow, N., Greenland, S. (1986). Estimators of the Mantel--Haenszel variance consistent in both sparse data and large-strata limiting models. \emph{Biometrics} 42, 311--323.
+  \item\label{ref:agresti} Agresti, A. \emph{Categorical Data Analysis.} Wiley (3rd ed., 2013).
+  \item\label{ref:efron} Efron, B. (1979). Bootstrap methods: another look at the jackknife. \emph{Annals of Statistics} 7(1), 1--26.
+  \item\label{ref:bda} Gelman, A., Carlin, J., Stern, H., Dunson, D., Vehtari, A., Rubin, D. \emph{Bayesian Data Analysis} (3rd ed.). CRC Press, 2013. (Beta--binomial model; hierarchical shrinkage.)
+  \item\label{ref:wasserstein} Wasserstein, R., Lazar, N. (2016). The ASA statement on p-values: context, process, and purpose. \emph{The American Statistician} 70(2), 129--133.
+  \item\label{ref:lin} Lin, M., Lucas, H., Shmueli, G. (2013). Too big to fail: large samples and the p-value problem. \emph{Information Systems Research} 24(4).
+  \item\label{ref:hernan} Hern\'an, M., Robins, J. (2020). \emph{Causal Inference: What If.} Chapman \& Hall/CRC. (Free online.)
+\end{enumerate}
+
+\subsection*{Survival analysis}
+\begin{enumerate}[label={[\arabic*]},ref=\arabic*,resume=refs]
+  \item\label{ref:km} Kaplan, E. L., Meier, P. (1958). Nonparametric estimation from incomplete observations. \emph{J. American Statistical Association} 53, 457--481.
+  \item\label{ref:cox} Cox, D. R. (1972). Regression models and life-tables. \emph{J. Royal Statistical Society B} 34, 187--220.
+  \item\label{ref:kleinbaum} Kleinbaum, D., Klein, M. \emph{Survival Analysis: A Self-Learning Text.} Springer. (Best first read: censoring, KM, Cox, PH assumption.)
+  \item\label{ref:schoenfeld} Schoenfeld, D. (1982). Partial residuals for the proportional hazards regression model. \emph{Biometrika} 69, 239--241.
+  \item\label{ref:grambsch} Grambsch, P., Therneau, T. (1994). Proportional hazards tests and diagnostics based on weighted residuals. \emph{Biometrika} 81, 515--526.
+  \item\label{ref:anderson} Anderson, J., Cain, K., Gelber, R. (1983). Analysis of survival by tumor response. \emph{J. Clinical Oncology} 1, 710--719. (Landmark method.)
+  \item\label{ref:suissa} Suissa, S. (2008). Immortal time bias in pharmaco-epidemiology. \emph{American J. Epidemiology} 167, 492--499.
+\end{enumerate}
+
+\subsection*{Robustness and researcher degrees of freedom}
+\begin{enumerate}[label={[\arabic*]},ref=\arabic*,resume=refs]
+  \item\label{ref:steegen} Steegen, S., Tuerlinckx, F., Gelman, A., Vanpaemel, W. (2016). Increasing transparency through a multiverse analysis. \emph{Perspectives on Psychological Science} 11(5), 702--712. (Local PDF.)
+  \item\label{ref:simonsohn} Simonsohn, U., Simmons, J., Nelson, L. (2020). Specification curve analysis. \emph{Nature Human Behaviour} 4, 1208--1214. (Local PDF + SI.)
+\end{enumerate}
+
+\subsection*{Online communities and user lifecycle}
+\begin{enumerate}[label={[\arabic*]},ref=\arabic*,resume=refs]
+  \item\label{ref:dnm} Danescu-Niculescu-Mizil, C., West, R., Jurafsky, D., Leskovec, J., Potts, C. (2013). No country for old members: user lifecycle and linguistic change in online communities. \emph{Proc. WWW}.
+  \item\label{ref:cheng} Cheng, J., Danescu-Niculescu-Mizil, C., Leskovec, J. (2015). Antisocial behavior in online discussion communities. \emph{Proc. ICWSM}.
+  \item\label{ref:kraut} Kraut, R., Resnick, P. (2012). \emph{Building Successful Online Communities: Evidence-Based Social Design.} MIT Press.
+\end{enumerate}
+
+\subsection*{Software}
+\begin{enumerate}[label={[\arabic*]},ref=\arabic*,resume=refs]
+  \item\label{ref:duckdb} Raasveldt, M., M\"uhleisen, H. (2019). DuckDB: an embeddable analytical database. \emph{Proc. SIGMOD (demo)}.
+  \item\label{ref:lifelines} Davidson-Pilon, C. (2019). lifelines: survival analysis in Python. \emph{Journal of Open Source Software} 4(40), 1317.
+\end{enumerate}
+
+% ------------------------------------------------------------------
+\appendix
+\section{Where things are}
+\begin{tabularx}{\textwidth}{@{}l Y@{}}
+\toprule
+Path & Content \\
+\midrule
+\file{INDEX.md} & Project map and how to start a new experiment \\
+\file{notes/meetings/} & One note per meeting (2026-09-30, 2026-10-19) \\
+\file{notes/dataset/} & README, Codebook, download log, \file{data-treatment.md} (cleaning decisions) \\
+\file{notes/method/AI-USE.md} & Assessment of AI use and the learning method \\
+\file{notes/experiments/01-reply-opposition-lifetime/} & README, PLAN, NOTES (decision log), RESULTS, EXPLICACION, EXPLICACION-RESUMEN, PREGUNTAS, \file{results/} (CSVs, figures, \file{run.log}) \\
+\file{code/experiments/01-reply-opposition-lifetime/} & Scripts 00--09, \file{common.py}, \file{h4.py}, \file{plotstyle.py} \\
+\file{data/derstandard/} & Raw data and \file{derived/} Parquet files (outside git) \\
+\file{notes/papers/} & PDFs of the readings \\
+\bottomrule
+\end{tabularx}
+
+\section{Glossary}
+\begin{description}[style=nextline,leftmargin=0pt]
+\item[Edge (reply edge)] A $\to$ B: A's message is a reply to a comment by B.
+\item[Co-present null] Replace B by the author of a random earlier comment in the same article.
+\item[Negative / positive edge] A's Beta-posterior approval of B, $E[p]$, below 0.4 / above 0.6 (with a minimum number of votes).
+\item[Faction] One of the two FAULTANA groups of stable users.
+\item[Hostile reply] A reply where the replier downvoted the comment they answer; \emph{friendly}: upvoted.
+\item[Lifetime] Last activity minus first activity (comments and votes).
+\item[Right- / left-censored] Last activity on or after 2022-07-01 / first activity before 2013-07-01.
+\item[Landmark] Day 30 after the first comment: exposures are measured before it, survival after it.
+\item[HR] Hazard ratio; $>1$ means leaving sooner.
+\item[Multiverse] Re-running an analysis under all defensible choices to see the spread.
+\end{description}
+
+\end{document}

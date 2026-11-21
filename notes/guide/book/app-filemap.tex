@@ -1,0 +1,44 @@
+\chapter{File map and reproduction}\label{app:filemap}
+
+\section*{Repository map}
+\begin{longtable}{@{}p{5.8cm} p{8cm}@{}}
+\toprule
+Path & What is there \\
+\midrule
+\endhead
+\file{INDEX.md} & start page of the vault \\
+\file{code/pyproject.toml}, \file{uv.lock} & Python environment \\
+\file{code/experiments/01-reply-opposition-lifetime/} & scripts 00--09, \file{common.py}, \file{h4.py}, \file{plotstyle.py}, checks \\
+\file{data/derstandard/} & raw tables and \file{derived/} Parquet (not versioned) \\
+\file{notes/dataset/} & README, codebook, data-treatment notes \\
+\file{notes/experiments/01-reply-opposition-lifetime/} & plan, notes, results, explanations, code review, \file{results/} \\
+\file{notes/papers/} & PDFs and \file{PAPERS-SUMMARY.md} \\
+\file{notes/meetings/} & meeting notes (2026-09-30, 2026-10-19) \\
+\file{notes/method/AI-USE.md} & how AI is used and labelled \\
+\file{notes/guide/} & this book, plus the two earlier guides \\
+\bottomrule
+\end{longtable}
+
+\section*{Rebuilding this book}
+\begin{lstlisting}
+cd notes/guide/book
+pdflatex main.tex
+pdflatex main.tex     # second pass for the table of contents and references
+\end{lstlisting}
+The figures are read from the experiment's \file{results/} folder (see \texttt{graphicspath} in \file{main.tex}); regenerate them by rerunning the scripts and the book picks them up. Snippets in \file{snippets/} are the sources of the code listings; run them with \texttt{python snippets/mh\_toy.py}.
+
+\section*{Where the numbers in this book come from}
+\begin{tabularx}{\textwidth}{@{}l Y@{}}
+\toprule
+Number & Source \\
+\midrule
+Funnel (53,427,803 $\to$ 44,350,672) & \file{results/01\_reply\_funnel.csv} \\
+H1 (4.43; 53.3 vs 30.1\%) & \file{results/04\_h1\_comment\_level.csv} \\
+H2, H3, reply-back & \file{results/05\_*.csv} \\
+Lifetime, KM, Cox & \file{results/06\_*.csv} \\
+Multiverse ranges & \file{results/07\_multiverse\_h2.csv}, \file{07\_multiverse\_h4.csv} \\
+Positive votes & \file{results/08\_*.csv} \\
+Long-lived users & \file{results/09\_*.csv} \\
+Voter-stratified H1 (3.49) & diagnostic in session scratchpad (\file{h1\_voter\_strata.py}); documented in \file{CODE-REVIEW.md} \\
+\bottomrule
+\end{tabularx}
