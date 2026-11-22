@@ -1,0 +1,212 @@
+% Resum per a la reunió del 2026-11-23. Compilar amb: xelatex resum.tex (dues vegades)
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{catalan}
+\setmainfont{TeX Gyre Pagella}
+% Una sola tipografia per a tot el document: text, títols, codi i fórmules
+\setsansfont{TeX Gyre Pagella}
+\setmonofont{TeX Gyre Pagella}
+\usepackage{unicode-math}
+\setmathfont{TeX Gyre Pagella Math}
+
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{accent}{HTML}{1F4E79}
+\definecolor{boxbg}{HTML}{EEF3F8}
+
+\titleformat{\section}{\sffamily\Large\bfseries\color{accent}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\sffamily\large\bfseries\color{accent}}{\thesubsection}{0.8em}{}
+\titlespacing*{\section}{0pt}{1.6em}{0.6em}
+\titlespacing*{\subsection}{0pt}{1.2em}{0.4em}
+
+% Sense patrons de partició per al català en aquesta instal·lació: deixem més espai entre paraules
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\setlist{itemsep=0.25em, topsep=0.3em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\sffamily\small\thepage}
+\fancyfoot[L]{\sffamily\small\color{gray}Fase inicial del TFG}
+
+\newtcolorbox{preguntes}[1]{enhanced, breakable, colback=boxbg, colframe=accent,
+  boxrule=0.8pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fonttitle=\sffamily\bfseries, title={#1}}
+
+\newcommand{\code}[1]{\texttt{\small #1}}
+
+\begin{document}
+
+\begin{center}
+  {\sffamily\LARGE\bfseries\color{accent} Fase inicial del treball de fi de grau\par} 
+  \vspace{0.6em}
+  {\large Marcel Manzano Clotet - 22/11/2026\par}
+
+\end{center}
+\vspace{1em}
+
+\section{Objectiu i pregunta central}
+
+\textbf{Objectiu personal del TFG:} Aprendre sobre disseny experimental, patrons de comportament a xarxes socials i aplicacions de l'enginyeria informàtica per l'àmbit social. Fer un treball d'investigació amb una metodologia sòlida.
+
+\textbf{Pregunta central del TFG:} Dins el forum del diari austríac DerStandard, qui respon a qui? A partir d'aquesta pregunta aniré filant prim per aprendre més sobre com es dissenyen les xarxes socials i com s'analitzen els comportaments interns.
+
+\section{Persones de referència}
+\begin{itemize}
+  \item \textbf{Andreas Kaltenbrunner:} tutor del TFG, actuarà com a acompanyant durant el procés i supervisarà l'investigació.
+  \item \textbf{Emma Fraxanet:} alumni de la UPF, investigadora al BSC, col·laboradora de l'Andreas i coautora del dataset.
+\end{itemize}
+
+\section{D'on venim}
+
+\subsection{Cronologia}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+\textbf{Data} & \textbf{Què va passar} \\
+\midrule
+30/09 & Reunió 1. Proposo idees (deriva semàntica d'un tema, \emph{bridging users}, contingut i ideologia). L'Andreas m'encarrega analitzar qui respon a qui, si les seves posicions són oposades, i el temps de vida dels usuaris. \\
+06/10 & La IA descarrega el dataset, escriu el pla (hipòtesis H1--H4), l'aprovo i s'executa tot el mateix dia. \\
+16/10 & Comprovacions de duplicats i d'autovots (el test d'autovots el dissenyo jo). \\
+19/10 & Reunió 2. L'Andreas aprova el mètode i els resultats. Demana vots positius, el 10\,\% d'usuaris amb més temps de vida, entendre els mètodes i llegir sobre xarxes amb signe. \\
+02/11 & La IA executa les anàlisis de vots positius i del 10\,\% amb més temps de vida. \\
+03/11 & La IA escriu una guia i resums de papers. Decideixo no executar res de nou fins entendre el que hi ha. \\
+09/11 & Reunió 3. Li dic a l'Andreas que no sento el TFG meu. Acordem que la IA només executi les meves idees. Per a ell, un bon TFG és la pregunta «qui respon a qui» analitzada en profunditat, amb l'autonomia esperada durant un doctorat. \\
+19/11 & Refaig el plantejament des de zero. \\
+21/11 & Repàs i neteja del projecte, regla de verificació i nou plantejament al repositori. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Primer trimestre}
+
+Tinc un repositori on estic documentant el tfg i on he escrit el codi.
+
+El disseny i l'execució dels tests per trobar les respostes a les preguntes que em va plantejar l'Andreas els va fer la IA.
+
+Durant el primer trimestre he dedicat menys temps del que hagués volgut dedicar al TFG. El temps que més vaig disfrutar va ser llegir els papers de DerStandard, FAULTANA i part d'altres relacionats.
+
+Vaig dir-li a l'Andreas des del principi que volia un seguiment continuu cada dues setmanes per evitar procrastinar, perquè em conec. Encara així, l'unió de la feina de tres assignatures, una setmana de grip encadenada amb una faringitis i otitis, una mena de crisi existencial per començar l'últim any de carrera i l'hàbit de procrastinar va acabar fent que la feina d'aquests dos mesos sobre el TFG no fos tant bona com hagués desitjat des del meu punt de vista.
+
+A les primeres dues reunions l'Andreas em va dir quines preguntes podia explorar, i vaig fer servir la IA per dissenyar els experiments per testejar les hipòtesis derivades d'aquelles preguntes. La falta d'experiència i de coneixement sobre el domini no em va permetre adonar-me dels problemes del disseny fet per la IA.
+
+\subsection{Problemes del disseny antic}
+
+El disseny antic tenia quatre hipòtesis, i cadascuna tenia un problema diferent:
+\begin{itemize}
+  \item \textbf{H1 (comentari):} comparava qui respon un comentari amb \emph{els altres} votants del mateix comentari. Si qui respon és en general més negatiu, l'efecte de respondre es barreja amb el tipus de votant.
+  \item \textbf{H2 (parella):} mirava el balanç de tots els vots d'A cap a B. Deia fer servir els paràmetres de FAULTANA, però no aplicava la condició de variància ($\mathrm{Var}[p] < 10^{-4}$) descrita al paper com a necessària i feia servir un mínim de 5 vots que no és de FAULTANA. A més, com que els vots no tenen data, el balanç inclou vots posteriors a la resposta, de manera que no estàvem testejant correctament l'hipòtesi.
+  \item \textbf{H3 (facció):} la proporció de respostes entre faccions es va interpretar en una sola direcció, i mai es va justificar la referència amb què es comparava. La conclusió depèn de quina referència es triï, cosa que al nou disseny es tindrà en compte.
+  \item \textbf{H3b (hostilitat entre faccions):} era circular per construcció (explicat més avall).
+  \item \textbf{H4 (temps de vida):} l'oposició primerenca que rebia un usuari podia incloure vots posteriors, perquè els vots no tenen data.
+\end{itemize}
+A més, la comprovació de les faccions que preveia el pla (que la xarxa reproduís el patró de FAULTANA) es complia per construcció, i la novetat del plantejament no es va comprovar amb la literatura. Aquest error va fer que perdés temps desenvolupant tests per un plantejament erroni de base.
+
+\subsection{El raonament circular (H3b)}
+
+Donades les dues faccions de FAULTANA, comparava si qui respon algú de l'altra facció havia votat negativament el comentari respost més sovint que qui respon algú de la seva facció (arribant a les xifres 64.6\,\% contra 37.0\,\%). Les faccions estan definides per minimitzar les arestes frustrades: dins de cada facció hi predominen les relacions positives i entre faccions les negatives. Per tant, trobar més vots negatius entre faccions és el que diu la seva definició, i la hipòtesi no aportava res. Així bé, després de la reunió en la que li vaig dir a l'Andreas que no estava entenent com fer el TFG ni què estava fent, vaig tornar al codi i he netejat el raonament cíclic.
+
+\section{Nou plantejament}
+
+He entès que l'Andreas no em va donar cap hipòtesi i ho vaig malentendre, de manera que de moment el treball és purament descriptiu.
+
+A la nova manera de plantejar l'anàlisi he acabat formulant dos preguntes que crec que estàn alineades amb el que volia dir l'Andreas a les reunions:
+
+\subsection{Quan algú respon a un comentari, l'autor es de la seva mateixa facció o de l'altre, i com es compara amb el que s'esperaria normalment?}
+
+Les faccions es van construir segons els vots entre usuaris. No podem afirmar que els vots i les respostes siguin independents entre ells. Volem medir llavors si les respostes creuen faccions i en quina proporció.
+
+L'anàlisi d'aquesta pregunta depèn de la quantitat de respostes on tinguem tant a l'autor del post com al de la resposta etiquetats. La població està limitada als 14\,817 usuaris etiquetats per FAULTANA.
+
+El script \code{check\_faction\_coverage.py} que es pot trobar al repositori dins de \code{code/dataset-checks/} dona els següents resultats:
+
+Donat que \code{factions} té 14\,817 usuaris i hi ha 44\,350\,672 respostes netes:
+
+\begin{center}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Etiquetatge de la resposta $A \to B$} & \textbf{Respostes} & \textbf{\%} \\
+\midrule
+\textbf{Tots dos etiquetats} & \textbf{11\,302\,013} & \textbf{25.48} \\
+Només qui respon ($A$) & 11\,263\,454 & 25.40 \\
+Només l'autor del comentari respost ($B$) & 10\,476\,843 & 23.62 \\
+Cap dels dos & 11\,308\,362 & 25.50 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+La població de la pregunta es conforma de 11\,302\,013 respostes, el 25.48\,\% de les dades netes.
+
+\subsection{Quan un usuari respon a un missatge, té més possibilitats d'haver-lo votat negatiu en comparació a un missatge semblant que no hagi respost?}
+
+En aquest cas no hi haurà raonament cíclic perquè la facció no es considera. Comparem la negativitat de l'usuari quan ha respost un missatge amb quan no. Això ajusta per disseny els usuaris que són majoritàriament negatius.
+
+Hi ha molts tipus de comentaris, i alguns seràn més polèmics que altres. Si podem separar els posts segons un ``grau de com polèmic és'' podriem medir l'efecte de respondre sense estar esbiaixats per quin tipus de comentari responem.
+
+Per medir aquest desnivell entre negativitat i positivitat faria servir el RRMH (risc relatiu de Mantel-Haenszel), que respon la pregunta ``quantes vegades és més probable un vot negatiu quan es respòn''. També farem servir les proporcions simples. La mesura del RRMH té certes condicions perquè el resultat sigui informatiu. Per exemple, una població on només hi ha vots de qui ha respost no genera resultats informatius.
+
+Farem bootstrap per votant per calcular els intervals de confiança, perquè els vots d'un mateix votant no són independents entre ells.
+
+Aquestes dues preguntes son les que crec que podem començar a desenvolupar per respondre la pregunta central ``qui respòn a qui i de quina manera''.
+
+\section{Limitacions de les dades}
+\begin{itemize}
+  \item \textbf{Els vots no tenen data} (només el mes de l'arxiu). No es pot saber si un vot és anterior o posterior a la resposta del mateix usuari.
+  \item \textbf{Usuaris esborrats.} Amb el plantejament actual s'exclouen 7\,976\,578 respostes (14.9\,\%) i 27.1 milions de vots. Pregunta oberta: els usuaris esborrats eren més conflictius que la resta? Si ho eren, excloure'ls fa que el fòrum sembli més tranquil del que va ser.
+  \item \textbf{Les faccions són fixes} per al període 2014--2021 i només cobreixen usuaris estables (els que van votar almenys un cop cada any).
+  \item \textbf{Posició = vots.} La pregunta inicial parlava de «posicions oposades»; amb les dades que tenim, l'oposició es mesura amb vots, no amb ideologia.
+\end{itemize}
+
+\section{Com treballo ara}
+
+\subsection{Regla de verificació}
+Tot el que faig servir de base ha d'estar verificat: les afirmacions de la literatura amb cita precisa (arxiu, pàgina del PDF, secció, taula o figura) i les xifres de les dades amb el seu script guardat. El que no es pot verificar s'elimina. Els fets verificats són a \code{notes/method/BASE-VERIFICADA.md}. Per garantir això i evitar repetir l'error de treballar sobre bases falses he creat un rol per la IA al repositori que verifica la veracitat d'una afirmació contra la seva font (el PDF, el codi o les dades) quan li ho demano o just després de revisar un text, i apunta el resultat a l'arxiu mencionat. Aquesta verificació després la comprovo manualment amb les referències trobades.
+
+\subsection{Ús de la IA}
+He creat unes limitacions per la IA dins el repo, evitant que proposi idees i limitant el seu paper a ``executora d'idees humanes''. Les instruccions completes es poden trobar a l'arxiu \code{CLAUDE.md} a l'arrel del repo.
+
+\subsection{Neteja del 21/11}
+\begin{itemize}
+  \item He eliminat el disseny antic (codi, resultats, pla i les guies i explicacions que va escriure la IA). Es pot recuperar a l'historial de git.
+  \item He separat el codi que sí segueix vigent: la preparació de les dades i les comprovacions del dataset. He tornat a executar les comprovacions de duplicats i d'autovots, amb el mateix resultat.
+  \item He comprovat les afirmacions sobre FAULTANA i l'article del dataset als PDF, amb pàgina, i he descartat les que no tenien font.
+\end{itemize}
+
+\section{Temes oberts}
+
+L'Andreas em va proposar que explorés el temps de vida dels usuaris a la plataforma, sense una hipòtesi concreta.
+
+La IA va formular la hipòtesi que l'oposició rebuda als primers dies s'associa a marxar abans, la va testejar i li vaig presentar els resultats. Però aquella anàlisi té un problema: com que els vots no tenen data, l'«oposició primerenca» pot incloure vots posteriors. L'he descartada de moment. Podria incloure la pregunta del temps de vida a aquestes dues, què et sembla?
+
+\begin{preguntes}{Preguntes obertes}
+\begin{itemize}[leftmargin=1.2em]
+  \item Com podria medir la negativitat entre usuaris sense vots?
+  \item Amb què comparo la proporció de respostes que creuen faccions? Com sabré si són moltes o poques?
+  \item Podria extendre aquestes preguntes a analitzar-ho un altre cop segons el tema? Es reduiria massa el tamany de la població?
+  \item Busques que acabi sent un treball descriptiu o un que testeja una hipòtesi?
+\end{itemize}
+\end{preguntes}
+
+\subsection*{Sobre l'Emma Fraxanet}
+Crec recordar que l'Andreas em va dir que li havia parlat a l'Emma sobre el TFG. Vaig entendre que havia sigut més enllà del correu que va enviar posant-me en cc on l'informava de que tenia dubtes sobre si es podia accedir als recursos de computació del BSC. A les últimes reunions no m'ha quedat clar si puc contactar amb ella directament per preguntar-li sobre el dataset i sobre possibles branques per investigar o si he de fer servir a l'Andreas com a intermediari. A part, alguna novetat sobre el seu nou estudi que fa servir el dataset?
+
+\subsection*{Sobre el TFG a nivell general}
+Em sento més còmode amb l'idea de que al ser un procés exploratiu em senti una mica perdut.
+
+M'agradaria conèixer a l'Emma com abans possible perquè crec que em podrà aportar idees molt millors que les que em surtin sense coneixement del camp i podré fer una feina més profitosa.
+
+\end{document}
